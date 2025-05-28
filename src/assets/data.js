@@ -57,7 +57,7 @@ export const stories = [
             ['text-soft-white', 'font-advercase', 'text-6xl', 'absolute', 't-0'],
             ['text-soft-white', 'font-satoshiR', 'text-lg', 'absolute', 't-0']
         ],
-        shoesImage: '/images/shoes/jordan-cmft-era/Cover.avif',
+        shoesImage: '/images/shoes/jordan-cmft-era/cover.avif',
         linkLabel: 'Comprar ahora',
         linkSrc: 'nike.com/jordan',
         storyBg: '/images/home-carousel/jordan-cmft--bg.avif',
