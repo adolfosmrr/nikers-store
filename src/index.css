@@ -1,0 +1,173 @@
+
+@import "tailwindcss";
+
+/* Advercase */ 
+@font-face {
+  font-family: 'advercase';
+  src: url('/fonts/Advercase-Bold.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 100;
+  font-display: swap;
+}
+
+/* Satoshi Light */ 
+@font-face {
+  font-family: 'satoshi-light';
+  src: url('/fonts/Satoshi-Light.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 100;
+  font-display: swap;
+}
+
+/* Satoshi Regular */ 
+@font-face {
+  font-family: 'satoshi-regular';
+  src: url('/fonts/Satoshi-Regular.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+/* Satoshi Medium */ 
+@font-face {
+  font-family: 'satoshi-medium';
+  src: url('/fonts/Satoshi-Medium.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+}
+
+/* Satoshi Bold */ 
+@font-face {
+  font-family: 'satoshi-bold';
+  src: url('/fonts/Satoshi-Bold.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
+@theme {
+
+  /* Font Family */ 
+  --font-advercase: 'advercase', sans-serif, system-ui;
+  --font-satoshiL: 'satoshi-ligh', sans-serif, system-ui;
+  --font-satoshiR: 'satoshi-regular', sans-serif, system-ui;
+  --font-satoshiM: 'satoshi-medium', sans-serif, system-ui;
+  --font-satoshiB: 'satoshi-bold', sans-serif, system-ui;
+
+  /* Colors */
+
+  --color-dark-grey: #333237;
+  --color-soft-white: #E4E4E4;
+
+  /* Max Width */
+
+  --spacing-8x1: 1440px;
+
+  /* Breakpoint */
+
+  --breakpoint-hero: 900px;
+  --breakpoint-deskScreen: 1440px;
+  --breakpoint-tabletScreen: 834px;
+}
+
+/* CSS Index Hero Section */
+
+.index-highlight {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  background: #fff;
+  transform: scaleX(100%);
+}
+
+.profile-name, .title-row {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+
+.link::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 0;
+  height: 1px;
+  background-color: #fff;
+}
+
+/* Car */
+
+.carWrapper {
+  clip-path: polygon(100% 0%, 100% 0%, 100% 0%, 100% 0%)
+}
+
+/* :root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
+ */ 
