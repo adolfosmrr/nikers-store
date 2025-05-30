@@ -49,7 +49,7 @@ function ProductCarousel({ setItemCar, setTotal, Title }) {
                     >
                         {
                             stories.map((slide, index) => (
-                                <SwiperSlide key={index} className="w-full h-full 991:h-full relative flex-shrink-0 overflow-hidden 991:min-h-[800px]">
+                                <SwiperSlide key={index} className="w-full h-full relative flex-shrink-0 overflow-hidden 1024:min-h-[800px]">
 
                                     {/* Background */}
 
@@ -64,7 +64,7 @@ function ProductCarousel({ setItemCar, setTotal, Title }) {
                                     {/* Content */}
 
                                     <div className="w-full h-full flex items-end relative z-3">
-                                        <div className="w-full pb-5 pl-2.5 920:pl-10 920:pb-10">
+                                        <div className="w-full pb-5 pl-2.5 1024:pl-10 1024:pb-10">
                                             <h1 className="font-advercase text-soft-white text-3xl text-balance 420:text-4xl 720:text-5xl 1024:text-6xl">{slide.newShoesTitle}</h1>
                                             <p className="font-satoshiR text-soft-white text-base 420:text-lg 991:text-lg">{slide.subTitle}</p>
                                         </div>
@@ -77,8 +77,8 @@ function ProductCarousel({ setItemCar, setTotal, Title }) {
 
                 {/* Swiper Items */}
 
-                <div className="w-full h-3/5 flex items-center overflow-hidden px-2.5 420:h-1/2 1024:w-1/2 1024:px-5">
-                    <div className="w-full flex flex-col justify-between gap-4 991:gap-7">
+                <div className="w-full h-3/5 flex items-center overflow-hidden px-2.5 420:h-1/2 1024:w-1/2 1024:h-full 1024:px-5">
+                    <div className="w-full flex flex-col justify-between gap-4 1024:gap-7">
 
                         {/* Title Hombres Sneakers */}
 
@@ -101,8 +101,8 @@ function ProductCarousel({ setItemCar, setTotal, Title }) {
                             >
                                 {
                                     stories.map((slide, index) => (
-                                        <SwiperSlide key={index} className=" 991:!w-2/5 flex-shrink-0 rounded-2xl p-5 bg-[linear-gradient(180deg,#F3F3F3,#644530)] overflow-hidden">
-                                            <img src={slide.shoesImage} alt={slide.newShoesTitle} className="-mt-10 991:mt-0 mb-5 w-[280px] 991:w-full mx-auto" />
+                                        <SwiperSlide key={index} className="flex-shrink-0 rounded-2xl p-5 bg-[linear-gradient(180deg,#F3F3F3,#644530)] overflow-hidden 1024:!w-3/4 1280:!w-2/3">
+                                            <img src={slide.shoesImage} alt={slide.newShoesTitle} className="-mt-10 1024:mt-0 mb-5 w-[280px] 1024:w-full mx-auto" />
                                             <h2 className="font-advercase text-soft-white text-lg">{slide.newShoesTitle}</h2>
                                             <p className="font-satoshiB text-soft-white mb-9">{slide.newShoesPrice}</p>
                                             <div className="w-full flex justify-end items-center gap-3.5">

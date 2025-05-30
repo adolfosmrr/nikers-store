@@ -27,14 +27,14 @@ function ShoesStore() {
 
             {/* Store Title */}
 
-            <div className="w-full px-2.5 tabletScreen:px-10 deskScreen:px-2.5 mx-auto max-w-8x1 flex justify-between items-end gap-3.5 mb-5">
-                <h1 className="font-advercase text-dark-grey text-2x1 text-nowrap">Sneakers</h1>
+            <div className="w-full px-2.5 mx-auto max-w-8x1 flex justify-between items-end gap-3.5 mb-5">
+                <h1 className="font-advercase text-dark-grey text-lg text-nowrap 720:text-xl 1024:text-2xl">Sneakers</h1>
                 <div className="w-full h-px bg-dark-grey"></div>
             </div>
 
             {/* Store */}
 
-            <div className="w-full grid grid-cols-2 auto-rows-fr gap-4 px-2.5 tabletScreen:px-10 deskScreen:px-2.5 mx-auto max-w-8x1">
+            <div className="w-full grid grid-cols-1 auto-rows-fr gap-2.5 px-2.5 mx-auto max-w-8x1 720:grid-cols-2">
                 {
                     sneakers.map((item) => {
 
@@ -42,17 +42,19 @@ function ShoesStore() {
 
                         return (
 
-                            <div key={item.id} className="w-full p-10 bg-[#cecece] flex flex-col justify-between items-center rounded-2xl">
+                            <div key={item.id} className="w-full p-5 bg-[#cecece] flex flex-col justify-between items-center rounded-2xl">
 
                                 {/* Item Title */}
 
                                 <div className="w-full">
-                                    <h1 className="font-advercase text-3xl text-dark-grey">{item.name}</h1>
+                                    <h1 className="font-advercase text-2xl text-dark-grey text-balance 920:text-3xl">{item.name}</h1>
                                 </div>
 
                                 {/* Item Picture */}
 
-                                <img src={`/images/shoes/${coverImage}`} alt={item.name} className="w-4/5 mb-20"/>
+                                <div className="h-full flex justify-center items-end">
+                                    <img src={`/images/shoes/${coverImage}`} alt={item.name} className="w-4/5 mb-10"/>
+                                </div>
 
                                 {/* Price & Add and Buy Button */}
 
@@ -60,7 +62,7 @@ function ShoesStore() {
 
                                     {/* Price */}
 
-                                    <p className="text-lg font-satoshiM text-dark-grey">${item.price}</p>
+                                    <p className="text-base font-satoshiM text-dark-grey 920:text-lg">${item.price}</p>
 
                                     {/* Add and Buy Button */}
 
