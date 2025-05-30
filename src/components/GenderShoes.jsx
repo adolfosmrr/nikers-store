@@ -12,7 +12,7 @@ function GenderShoes() {
         {
             background: '/images/background/women-bg.avif',
             title: 'Mujeres',
-            contentStyle: ['w-full', 'flex', 'justify-start', 'items-center', 'gap-3.5', 'transition-all', 'group-hover:gap-5']
+            contentStyle: ['w-full', 'flex', 'justify-end', 'items-center', 'gap-3.5', 'transition-all', 'group-hover:gap-5', '720:justify-start']
         },
     ]
 
@@ -33,7 +33,7 @@ function GenderShoes() {
                             {/* Content */}
 
                             <div className="w-full h-full flex flex-col justify-end relative px-10 py-10">
-                                <div className={item.contentStyle.join(' ')}>
+                                <div className={item.contentStyle.join(' ') }>
                                     <h2 className="font-advercase text-lg tabletScreen:text-2x1 text-soft-white">{item.title}</h2>
                                     <div className="size-[20px] deskScreen:size-[25px] bg-soft-white rounded-full flex justify-center items-center relative group-hover:rotate-180 transition-all">
                                         <div className="w-2.5 h-0.5 bg-dark-grey"></div>

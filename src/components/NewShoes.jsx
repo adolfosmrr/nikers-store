@@ -8,7 +8,7 @@ function NewShoes({ setItemCar, setTotal }) {
 
         <section className="w-full h-full bg-soft-white py-5">
 
-            <div className="max-w-8x1 mx-auto px-2.5 tabletScreen:px-10 deskScreen:px-2.5">
+            <div className="max-w-8x1 mx-auto px-2.5">
 
                 {/* Title */}
 

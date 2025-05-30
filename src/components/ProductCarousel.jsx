@@ -82,7 +82,7 @@ function ProductCarousel({ setItemCar, setTotal, Title }) {
 
                         {/* Title Hombres Sneakers */}
 
-                        <h1 className="font-advercase text-dark-grey text-xl">{Title}</h1>
+                        <h1 className="font-advercase text-dark-grey text-lg 720:text-xl 1024:text-2xl">{Title}</h1>
 
                         {/* Slides */}
 

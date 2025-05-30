@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from 'react-router-dom'
 import gsap from "gsap";
 
 function ShoesStore() {
@@ -81,7 +82,7 @@ function ShoesStore() {
                                                 <div className="w-2.5 h-0.5 bg-soft-white"></div>
                                                 <div className="w-0.5 h-2.5 bg-soft-white absolute top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2"></div>
                                             </div>
-                                            <a href={item.linkSrc} className="px-4 py-2 deskScreen:px-5 bg-dark-grey rounded-sm cursor-pointer text-sm font-advercase text-soft-white">Ver mas</a>
+                                            <Link to={`/sneakers/${item.id}`} className="px-4 py-2 deskScreen:px-5 bg-dark-grey rounded-sm cursor-pointer text-sm font-advercase text-soft-white">Ver mas</Link>
                                     </div>
 
                                 </div>

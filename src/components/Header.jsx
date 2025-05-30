@@ -24,7 +24,7 @@ function Header({ itemCar }) {
 
     return (
         <header className="w-full fixed z-99 bg-black/70 backdrop-blur-sm">
-            <div className="w-full px-2.5 tabletScreen:px-10 deskScreen:px-2.5 py-3.5 max-w-8x1 mx-auto flex justify-between items-center">
+            <div className="w-full px-2.5 py-3.5 max-w-8x1 mx-auto flex justify-between items-center">
 
                 {/* Logo */}
 
@@ -54,7 +54,7 @@ function Header({ itemCar }) {
 
                 <div className="w-3/4 flex justify-end items-center gap-10 991:gap-14">
                     <nav>
-                        <ul className="hidden 991:flex gap-8">
+                        <ul className="hidden 920:flex gap-8">
                             {linksNames.map((link, index) => (
                                 <li key={index}><Link className="text-soft-white font-satoshiM cursor-pointer" to={linkSrc[index]}>{link}</Link></li>
                             ))}
@@ -115,7 +115,7 @@ function Header({ itemCar }) {
 
                     {/* Burger Menu */}
 
-                    <div className="w-8 flex flex-col justify-between gap-0.5 group cursor-pointer 991:hidden" onClick={burgerMenuShow}>
+                    <div className="w-8 flex flex-col justify-between gap-0.5 group cursor-pointer 920:hidden" onClick={burgerMenuShow}>
                         <div className="w-full h-px bg-soft-white"></div>
                         <div className="w-full h-px bg-soft-white"></div>
                         <div className="w-full h-px bg-soft-white transition-all duration-400 origin-right scale-x-100 group-hover:scale-x-50"></div>
@@ -123,7 +123,7 @@ function Header({ itemCar }) {
 
                     {/* Burgers Links */}
 
-                    <div className="burgerWrapper absolute bg-soft-white top-0 right-0 px-2.5 tabletScreen:px-10 deskScreen:px-2.5 py-3.5 flex flex-col justify-between gap-10">
+                    <div className="burgerWrapper absolute bg-soft-white top-0 right-0 px-2.5 py-3.5 flex flex-col justify-between gap-10 920:hidden">
                         <div className="w-full flex justify-between items-center gap-10">
 
                             {/* Icons Wrapper */}
