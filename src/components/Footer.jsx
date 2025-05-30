@@ -2,11 +2,11 @@ function Footer() {
 
     return (
         <footer className="w-full bg-soft-white border-t-1 border-t-dark-grey">
-            <div className="w-full px-2.5 tabletScreen:px-10 deskScreen:px-2.5 py-3.5 max-w-8x1 mx-auto flex justify-between items-center">
+            <div className="w-full px-2.5 tabletScreen:px-10 deskScreen:px-2.5 py-3.5 max-w-8x1 mx-auto flex flex-col hero:flex-row justify-between items-start hero:items-center">
 
                 {/* Logo */}
 
-                <div className="w-1/5">
+                <div className="w-1/5 mb-2.5 hero:mb-0">
                     <svg width="79" height="29" viewBox="0 0 79 29" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g clip-path="url(#clip0_63_385)">
                             <path d="M18.3672 2.50167C18.3672 2.50167 17.1136 5.36964 19.2139 5.96809C19.8685 6.08713 20.6148 5.9773 21.7232 5.42488L33.7094 0L21.6395 7.70492C21.6395 7.70492 18.6343 9.82582 17.137 8.45529C15.639 7.08477 17.1852 4.14248 18.3679 2.50167" fill="#333237" />
@@ -28,13 +28,13 @@ function Footer() {
 
                 {/* Newsletter & Instagram */}
 
-                <div className="w-4/5 flex justify-end items-center gap-10">
+                <div className="w-full hero:w-4/5 flex justify-between hero:justify-end items-center gap-10">
 
                     {/* Form */}
 
-                    <div>
-                        <form className="flex gap-3.5">
-                            <input type="email" name="newsletter" placeholder="registrate en el newsletter" className="border-b-1 w-120 mr-3.5 placeholder:font-satoshiR font-satoshiR focus:outline-none" />
+                    <div className="w-full 991:w-auto">
+                        <form className="flex gap-3.5 w-full">
+                            <input type="email" name="newsletter" placeholder="registrate en el newsletter" className="border-b-1 w-full 991:w-120 mr-3.5 placeholder:font-satoshiR font-satoshiR focus:outline-none" />
                             <button type="submit" className="font-advercase text-soft-white text-sm px-5 py-2 bg-dark-grey rounded-sm cursor-pointer">Enviar</button>
                         </form>
                     </div>

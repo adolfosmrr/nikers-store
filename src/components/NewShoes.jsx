@@ -20,7 +20,7 @@ function NewShoes({ setItemCar, setTotal }) {
 
                 {/* Shoes Items */}
 
-                <div className="w-full max-w-8x1 mx-auto grid grid-cols-3 grid-rows-2 auto-rows-ft gap-2.5">
+                <div className="w-full max-w-8x1 mx-auto grid grid-cols-1 720:grid-cols-2 991:grid-cols-3 grid-rows-2 auto-rows-ft gap-2.5">
                     {
                         stories.map((item) => (
                             <div key={item.id} className="w-full p-2.5 deskScreen:p-5 relative rounded-2xl overflow-hidden group">

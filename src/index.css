@@ -69,6 +69,10 @@
   --breakpoint-hero: 900px;
   --breakpoint-deskScreen: 1440px;
   --breakpoint-tabletScreen: 834px;
+
+  --breakpoint-420: 420px;
+  --breakpoint-720: 720px;
+  --breakpoint-991: 991px; 
 }
 
 /* CSS Index Hero Section */
@@ -98,7 +102,7 @@
 
 /* Car */
 
-.carWrapper {
+.carWrapper, .burgerWrapper {
   clip-path: polygon(100% 0%, 100% 0%, 100% 0%, 100% 0%)
 }
 

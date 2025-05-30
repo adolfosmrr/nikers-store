@@ -24,14 +24,14 @@ function AboutUs() {
                 {/* Background Picture */}
 
                 <div className="absolute w-3xs top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 rotate-12 z-2 mix-blend-multiply">
-                    <img src="/images/background/about-bg.avif" />
+                    <img className="opacity-60" src="/images/background/about-bg.avif" />
                 </div>
 
                 {/* Text */}
 
                 <div className="w-full h-full flex flex-col justify-between relative">
-                    <p className="text-6xl/[1.2] font-advercase text-dark-grey text-center">{topText}</p>
-                    <p className="text-6xl/[1.2] font-advercase text-dark-grey text-center">{bottomText}</p>
+                    <p className=" text-3xl/[1.2] 420:text-4xl/[1.2] 720:text-5xl/[1.2] 991:text-6xl/[1.2] font-advercase text-dark-grey text-center">{topText}</p>
+                    <p className=" text-3xl/[1.2] 420:text-4xl/[1.2] 720:text-5xl/[1.2] 991:text-6xl/[1.2] font-advercase text-dark-grey text-center">{bottomText}</p>
                 </div>
             </div>
         </section>

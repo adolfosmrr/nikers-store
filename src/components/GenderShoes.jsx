@@ -18,15 +18,15 @@ function GenderShoes() {
 
     return (
         <section className="w-full h-screen max-h-[800px]">
-            <div className="w-full h-full flex">
+            <div className="w-full h-full flex flex-col 720:flex-row">
                 {
                     options.map((item, index) => (
-                        <a href="#" className="w-1/2 h-full relative cursor-pointer group">
+                        <a href="#" className="w-full 720:w-1/2 h-full relative cursor-pointer group">
 
                             {/* Background */}
 
                             <div className="w-full h-full absolute top-0 left-0 z-0">
-                                <img className="w-full h-full object-cover" src={item.background} alt={item.title} />
+                                <img className="w-full h-full object-cover object-bottom 720:object-center" src={item.background} alt={item.title} />
                                 <div className="w-full h-full absolute top-0 left-0 z-1 inset-0 bg-gradient-to-t from-black/70 to-black/0"></div>
                             </div>
 
