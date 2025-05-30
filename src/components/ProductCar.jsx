@@ -55,12 +55,6 @@ function ProductCar({ itemCar, setItemCar, total, setTotal }) {
 
                     <div className="w-full flex justify-between items-center mb-7 px-5">
 
-                        {/* Close Button */}
-
-                        <div className="size-6 bg-dark-grey flex justify-center items-center rounded-full group cursor-pointer" onClick={closeCar}>
-                            <div className="w-2.5 h-0.5 bg-soft-white group-hover:w-full transition-all"></div>
-                        </div>
-
                         {/* Profile Icon */}
 
                         <svg width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg" className="cursor-pointer">
@@ -73,6 +67,12 @@ function ProductCar({ itemCar, setItemCar, total, setTotal }) {
                                 </clipPath>
                             </defs>
                         </svg>
+
+                        {/* Close Button */}
+
+                        <div className="size-6 bg-dark-grey flex justify-center items-center rounded-full group cursor-pointer" onClick={closeCar}>
+                            <div className="w-2.5 h-0.5 bg-soft-white group-hover:w-full transition-all"></div>
+                        </div>
 
                     </div>
 

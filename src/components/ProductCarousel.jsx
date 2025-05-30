@@ -8,7 +8,7 @@ import { useRef, useEffect } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation, Pagination, Controller } from 'swiper/modules'
 
-import 'swiper/css';
+// import 'swiper/css';
 import 'swiper/css/pagination';
 import { Link } from "react-router-dom";
 
@@ -30,12 +30,13 @@ function ProductCarousel({ setItemCar, setTotal, Title }) {
 
         // ---- Carrousel Hero Section
 
-        <section className="w-full h-screen min-h-[800px] bg-soft-white">
-            <div className="w-full h-full max-w-[1920px] max-auto flex justify-between items-center">
+        <section className="w-full h-screen min-h-[1000px] 991:min-h-[800px] bg-soft-white">
+            <div className="w-full h-full max-w-[1920px] max-auto 1024:flex 1024:flex-row 1024:justify-between 1024:items-center">
 
                 {/* Big Swiper Picture */}
 
-                <div className="w-1/2 h-full overflow-hidden">
+                <div className="w-full h-2/5 overflow-hidden 420:h-1/2 1024:w-1/2 1024:h-full">
+
                     <Swiper
                         modules={[Navigation, Controller]}
                         slidesPerView={'auto'}
@@ -44,23 +45,28 @@ function ProductCarousel({ setItemCar, setTotal, Title }) {
                             prevEl: prevRef.current,
                             nextEl: nextRef.current,
                         } : false}
-                        className="w-full h-screen"
+                        className="w-full h-full"
                     >
                         {
                             stories.map((slide, index) => (
-                                <SwiperSlide key={index} className="w-full h-full relative flex-shrink-0 overflow-hidden min-h-[800px]">
+                                <SwiperSlide key={index} className="w-full h-full 991:h-full relative flex-shrink-0 overflow-hidden 991:min-h-[800px]">
+
+                                    {/* Background */}
+
                                     <div className="absolute z-0 w-full h-full top-0 left-0">
                                         <img className="w-full h-full object-cover absolute top-0 left-0 z-0" src={slide.storyBg} alt={slide.newShoesTitle} />
                                         <div className="w-full h-full absolute z-1 backdrop-blur-sm bg-black/50"></div>
-                                        <div className="relative z-2 w-full h-full flex justify-end items-center">
-                                            <img className="w-[2000px] relative -top-1/2 transform translate-y-2/3 left-1/2 -translate-x-2/6" src={slide.shoesImage} alt={slide.newShoesTitle} />
+                                        <div className="relative z-2 w-full h-full">
+                                            <img className="relative w-full left-1/2 transform -translate-x-2/5 420:-translate-y-3/5 420:top-1/2 720:!w-[820px] 720:-translate-x-2/6 920:-translate-x-1/6 1024:-translate-x-2/6 " src={slide.shoesImage} alt={slide.newShoesTitle} />
                                         </div>
                                     </div>
 
+                                    {/* Content */}
+
                                     <div className="w-full h-full flex items-end relative z-3">
-                                        <div className="w-full pb-20 pl-10">
-                                            <h1 className="font-advercase text-soft-white text-6xl mb-2.5">{slide.newShoesTitle}</h1>
-                                            <p className="font-satoshiR text-soft-white text-lg">{slide.subTitle}</p>
+                                        <div className="w-full pb-5 pl-2.5 920:pl-10 920:pb-10">
+                                            <h1 className="font-advercase text-soft-white text-3xl text-balance 420:text-4xl 720:text-5xl 1024:text-6xl">{slide.newShoesTitle}</h1>
+                                            <p className="font-satoshiR text-soft-white text-base 420:text-lg 991:text-lg">{slide.subTitle}</p>
                                         </div>
                                     </div>
                                 </SwiperSlide>
@@ -71,8 +77,8 @@ function ProductCarousel({ setItemCar, setTotal, Title }) {
 
                 {/* Swiper Items */}
 
-                <div className="w-1/2 h-full flex items-center overflow-hidden px-5">
-                    <div className="w-full flex flex-col justify-between gap-7">
+                <div className="w-full h-3/5 flex items-center overflow-hidden px-2.5 420:h-1/2 1024:w-1/2 1024:px-5">
+                    <div className="w-full flex flex-col justify-between gap-4 991:gap-7">
 
                         {/* Title Hombres Sneakers */}
 
@@ -95,8 +101,8 @@ function ProductCarousel({ setItemCar, setTotal, Title }) {
                             >
                                 {
                                     stories.map((slide, index) => (
-                                        <SwiperSlide key={index} className="!w-2/5 flex-shrink-0 rounded-2xl p-5 bg-[linear-gradient(180deg,#F3F3F3,#644530)]">
-                                            <img src={slide.shoesImage} alt={slide.newShoesTitle} className="mb-5" />
+                                        <SwiperSlide key={index} className=" 991:!w-2/5 flex-shrink-0 rounded-2xl p-5 bg-[linear-gradient(180deg,#F3F3F3,#644530)] overflow-hidden">
+                                            <img src={slide.shoesImage} alt={slide.newShoesTitle} className="-mt-10 991:mt-0 mb-5 w-[280px] 991:w-full mx-auto" />
                                             <h2 className="font-advercase text-soft-white text-lg">{slide.newShoesTitle}</h2>
                                             <p className="font-satoshiB text-soft-white mb-9">{slide.newShoesPrice}</p>
                                             <div className="w-full flex justify-end items-center gap-3.5">

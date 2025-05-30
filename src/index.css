@@ -72,7 +72,9 @@
 
   --breakpoint-420: 420px;
   --breakpoint-720: 720px;
-  --breakpoint-991: 991px; 
+  --breakpoint-920: 920px;
+  --breakpoint-1024: 1024px;
+  --breakpoint-1280: 1280px;
 }
 
 /* CSS Index Hero Section */
@@ -105,6 +107,8 @@
 .carWrapper, .burgerWrapper {
   clip-path: polygon(100% 0%, 100% 0%, 100% 0%, 100% 0%)
 }
+
+.swiper-wrapper {display: flex; width: 100%; height: 100%;}
 
 /* :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
