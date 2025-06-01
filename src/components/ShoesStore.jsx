@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from 'react-router-dom'
+import { slugify } from "../utils/slugify";
 import gsap from "gsap";
 
 function ShoesStore() {
@@ -9,7 +10,7 @@ function ShoesStore() {
 
     useEffect(() => {
         fetch("https://6825fe46397e48c913148b73.mockapi.io/products/v1/sneakers")
-            .then(response => response.json())
+            .then(res => res.json())
             .then(data => {
                 setSneakers(data);
                 setloading(false);
@@ -40,6 +41,8 @@ function ShoesStore() {
                     sneakers.map((item) => {
 
                         const coverImage = item.images.find(img => img.includes("cover"));
+
+                        const itemSlug = slugify(item.name);
 
                         return (
 
@@ -82,7 +85,7 @@ function ShoesStore() {
                                                 <div className="w-2.5 h-0.5 bg-soft-white"></div>
                                                 <div className="w-0.5 h-2.5 bg-soft-white absolute top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2"></div>
                                             </div>
-                                            <Link to={`/sneakers/${item.id}`} className="px-4 py-2 deskScreen:px-5 bg-dark-grey rounded-sm cursor-pointer text-sm font-advercase text-soft-white">Ver mas</Link>
+                                            <Link to={`/sneakers/${itemSlug}`} className="px-4 py-2 deskScreen:px-5 bg-dark-grey rounded-sm cursor-pointer text-sm font-advercase text-soft-white">Ver mas</Link>
                                     </div>
 
                                 </div>

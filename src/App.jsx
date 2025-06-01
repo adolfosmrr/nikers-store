@@ -72,6 +72,7 @@ function App() {
         <Route path="/AboutUs" element={<AboutUs />} />
         <Route path="/ProductMen" element={<ProductMen />} />
         <Route path="/ProductWomen" element={<ProductWomen />} />
+        <Route path='/sneakers/:slug' element={<ProductDetail />}></Route>
       </Routes>
     </BrowserRouter>
     // <ProductDetail />
