@@ -3,6 +3,8 @@ import gsap from "gsap";
 
 function ProductCar({ itemCar, setItemCar, total, setTotal }) {
 
+    const [number, setNumber] = useState(1)
+
     {/* Función para eliminar producto del carrito */ }
 
     function removeItem(id) {
@@ -12,6 +14,43 @@ function ProductCar({ itemCar, setItemCar, total, setTotal }) {
             const priceNumber = parseFloat(itemToRemove.newShoesPrice.replace('$', ''));
             setTotal(prev => prev - priceNumber);
             setItemCar(prev => prev.filter(item => item.id !== id));
+        }
+    }
+
+    function increaseItem(id) {
+        setItemCar(prev => {
+            return prev.map(item => {
+                if (item.id === id) {
+                    setTotal(prevTotal => prevTotal + parseFloat(item.newShoesPrice.replace('$', '')))
+                    return { ...item, quantity: item.quantity + 1 };
+                }
+                return item;
+            });
+        });
+    }
+
+    function decreaseItem(id) {
+        const itemToUpdate = itemCar.find(item => item.id === id);
+
+        if (!itemToUpdate) return;
+
+        const price = parseFloat(itemToUpdate.newShoesPrice.replace('$', ''));
+
+        if (itemToUpdate.quantity === 1) {
+            removeItem(id);
+        } else {
+            // Primero actualizás el carrito
+            setItemCar(prev =>
+                prev.map(item => {
+                    if (item.id === id) {
+                        return { ...item, quantity: item.quantity - 1 };
+                    }
+                    return item;
+                })
+            );
+
+            // Después actualizás el total
+            setTotal(prev => prev - price);
         }
     }
 
@@ -89,8 +128,24 @@ function ProductCar({ itemCar, setItemCar, total, setTotal }) {
                                         </div>
                                         <div className="w-full flex justify-between items-center">
                                             <p className="font-satoshiB text-lg">{item.newShoesPrice}</p>
-                                            <div className="size-6 bg-dark-grey flex justify-center items-center rounded-full group cursor-pointer" onClick={() => removeItem(item.id)}>
-                                                <div className="w-2.5 h-0.5 bg-soft-white group-hover:w-full transition-all"></div>
+                                            <div className="flex gap-7.5 items-center">
+
+                                                {/* Plus Icon */}
+
+                                                <div className="size-6 bg-dark-grey flex justify-center items-center rounded-full cursor-pointer relative transition-all duration-300  hover:rotate-180" onClick={() => increaseItem(item.id)}>
+                                                    <div className="w-0.5 h-2.5 bg-soft-white absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
+                                                    <div className="w-2.5 h-0.5 bg-soft-white"></div>
+                                                </div>
+
+                                                {/* Number of sneakers */}
+
+                                                <p className="font-satoshiB text-dark-grey text-base">{item.quantity}</p>
+
+                                                {/* Delet Icon */}
+
+                                                <div className="size-6 bg-dark-grey flex justify-center items-center rounded-full group cursor-pointer" onClick={() => decreaseItem(item.id)}>
+                                                    <div className="w-2.5 h-0.5 bg-soft-white group-hover:w-full transition-all"></div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>)) :

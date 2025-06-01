@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import gsap from "gsap";
 import { stories } from "../assets/data";
 
-function NewShoes({ setItemCar, setTotal }) {
+function NewShoes({ itemCar, setItemCar, setTotal }) {
 
     return (
 
@@ -36,20 +36,32 @@ function NewShoes({ setItemCar, setTotal }) {
 
                                 <div className="relative z-2 p-5 flex flex-col justify-between w-full h-full">
                                     <h2 className="font-advercase text-soft-white text-xl tabletScreen:text-2xl deskScreen:text-3xl max-w-full text-balance h-1/3">{item.newShoesTitle}</h2>
-                                    <img src={item.shoesImage} className="w-4/5 mx-auto mb-6"/>
+                                    <img src={item.shoesImage} className="w-4/5 mx-auto mb-6" />
                                     <div className="flex justify-between items-center">
                                         <p className="text-base tabletScreen:text-lg deskScreen:text-xl text-soft-white font-satoshiB">{item.newShoesPrice}</p>
                                         <div className="flex justify-between items-center gap-3.5">
-                                            <div className="size-[20px] deskScreen:size-[25px] bg-soft-white rounded-full flex justify-center items-center relative transition-all hover:rotate-180 cursor-pointer" onClick={ () => {
-                                                setItemCar( prev => [...prev, {
-                                                    id: item.id,
-                                                    shoesImage: item.shoesImage,
-                                                    newShoesTitle: item.newShoesTitle,
-                                                    newShoesPrice: item.newShoesPrice
-                                                }] )
+                                            <div className="size-[20px] deskScreen:size-[25px] bg-soft-white rounded-full flex justify-center items-center relative transition-all hover:rotate-180 cursor-pointer" onClick={() => {
+                                                const exists = itemCar.find(shoe => shoe.id === item.id);
+                                                const priceNumber = parseFloat(item.newShoesPrice.replace('$', ''));
 
-                                                const priceNumber = parseFloat( item.newShoesPrice.replace('$', ''));
-                                                setTotal( prev => prev + priceNumber );
+                                                if (exists) {
+                                                    setItemCar(prev => prev.map(shoe => {
+                                                        if (shoe.id === item.id) {
+                                                            return { ...shoe, quantity: shoe.quantity + 1 };
+                                                        }
+                                                        return shoe;
+                                                    }));
+                                                } else {
+                                                    setItemCar(prev => [...prev, {
+                                                        id: item.id,
+                                                        shoesImage: item.shoesImage,
+                                                        newShoesTitle: item.newShoesTitle,
+                                                        newShoesPrice: item.newShoesPrice,
+                                                        quantity: 1
+                                                    }]);
+                                                }
+
+                                                setTotal(prev => prev + priceNumber);
                                             }}>
                                                 <div className="w-2.5 h-0.5 bg-dark-grey"></div>
                                                 <div className="w-0.5 h-2.5 bg-dark-grey absolute top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2"></div>

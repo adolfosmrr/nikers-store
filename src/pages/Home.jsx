@@ -4,13 +4,13 @@ import GenderShoes from '../components/GenderShoes';
 import NewShoes from '../components/NewShoes';
 import Footer from '../components/Footer';
 
-function Home({ setItemCar, setTotal }) {
+function Home({ itemCar, setItemCar, setTotal }) {
   return (
     <>
       <HomeHero />
       <AboutUs />
       <GenderShoes />
-      <NewShoes setItemCar={setItemCar} setTotal={setTotal} />
+      <NewShoes itemCar={itemCar} setItemCar={setItemCar} setTotal={setTotal} />
       <Footer />
     </>
   );

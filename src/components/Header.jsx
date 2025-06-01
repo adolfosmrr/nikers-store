@@ -104,7 +104,7 @@ function Header({ itemCar }) {
                             {
                                 itemCar.length > 0 && (
                                     <div className="absolute -top-1 -right-2 bg-red-600 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold pointer-events-none">
-                                        {itemCar.length}
+                                        {itemCar.reduce((acc, item) => acc + item.quantity, 0)}
                                     </div>
                                 )
                             }
