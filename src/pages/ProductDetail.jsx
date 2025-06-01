@@ -2,30 +2,73 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { gsap } from "gsap/gsap-core";
 
-function ProductDetail() {
+function ProductDetail({ setItemCar, setTotal }) {
 
-    const { id } = useParams();
+    const slugify = (str) => str.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]+/g, '');
+
+    const { slug } = useParams();
 
     const [sneaker, setSneaker] = useState([]);
-    const [loading, setloading] = useState(true)
+    const [loading, setloading] = useState(true);
+    const [selectedSize, setSelectedSize] = useState(null);
 
     useEffect(() => {
         fetch("https://6825fe46397e48c913148b73.mockapi.io/products/v1/sneakers")
             .then(response => response.json())
             .then(data => {
-                setSneaker(data);
+                const product = data.find(item => slugify(item.name) === slug);
+                setSneaker(product);
                 setloading(false);
             })
             .catch(error => {
                 console.error("Error al cargar los datos:", error);
                 setloading(false)
             })
-    }, [id])
+    }, [slug])
 
     if (loading) return <p>Cargando...</p>;
     if (!sneaker) return <p>No se encontró la zapatilla.</p>
 
-    const sizes = ['36', '37', '38', '39', '40', '41', '42']
+    const sizes = ['36', '37', '38', '39', '40', '41', '42'];
+
+    const handleBuy = () => {
+        if (!selectedSize) {
+            alert("Por favor, seleccioná una talla antes de comprar.");
+            return;
+        }
+
+        const price = parseFloat(sneaker.price);
+
+        const exists = itemCar.find(
+            item => item.id === sneaker.id && item.size === selectedSize
+        );
+
+        if (exists) {
+            setItemCar(prev =>
+                prev.map(item => {
+                    if (item.id === sneaker.id && item.size === selectedSize) {
+                        return { ...item, quantity: item.quantity + 1 };
+                    }
+                    return item;
+                })
+            );
+        } else {
+            setItemCar(prev => [
+                ...prev,
+                {
+                    id: sneaker.id,
+                    title: sneaker.title,
+                    price: price,
+                    image: sneaker.image,
+                    size: selectedSize,
+                    quantity: 1,
+                }
+            ]);
+        }
+
+        setTotal(prev => prev + price);
+    };
+
 
     return (
 

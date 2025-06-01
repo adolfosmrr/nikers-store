@@ -3,45 +3,56 @@ import gsap from "gsap";
 
 function ProductCar({ itemCar, setItemCar, total, setTotal }) {
 
-    const [number, setNumber] = useState(1)
-
     {/* Función para eliminar producto del carrito */ }
 
     function removeItem(id) {
-        const itemToRemove = itemCar.find(item => item.id === id);
+        const itemToRemove = itemCar.find((item) => item.id === id);
+        if (!itemToRemove) return;
 
-        if (itemToRemove) {
-            const priceNumber = parseFloat(itemToRemove.newShoesPrice.replace('$', ''));
-            setTotal(prev => prev - priceNumber);
-            setItemCar(prev => prev.filter(item => item.id !== id));
-        }
+        const cantidadActual = itemToRemove.quantity;
+        const precioU = itemToRemove.priceUnitario;
+
+        setTotal((prev) => prev - precioU * cantidadActual);
+
+        setItemCar((prev) => prev.filter((item) => item.id !== id));
     }
 
+    {/* Función para aumentar la cantidad del producto del carrito */ }
+
     function increaseItem(id) {
-        setItemCar(prev => {
-            return prev.map(item => {
+
+        const itemToUpdate = itemCar.find((item) => item.id === id);
+        if (!itemToUpdate) return;
+
+        const precioU = itemToUpdate.priceUnitario;
+
+        setItemCar((prev) =>
+            prev.map((item) => {
                 if (item.id === id) {
-                    setTotal(prevTotal => prevTotal + parseFloat(item.newShoesPrice.replace('$', '')))
                     return { ...item, quantity: item.quantity + 1 };
                 }
                 return item;
-            });
-        });
+            })
+        );
+
+        setTotal((prevTotal) => prevTotal + precioU);
     }
 
-    function decreaseItem(id) {
-        const itemToUpdate = itemCar.find(item => item.id === id);
+    {/* Función para disminuir la cantidad del producto del carrito */ }
 
+    function decreaseItem(id) {
+        const itemToUpdate = itemCar.find((item) => item.id === id);
         if (!itemToUpdate) return;
 
-        const price = parseFloat(itemToUpdate.newShoesPrice.replace('$', ''));
+        const precioU = itemToUpdate.priceUnitario;
 
         if (itemToUpdate.quantity === 1) {
+            
             removeItem(id);
         } else {
-            // Primero actualizás el carrito
-            setItemCar(prev =>
-                prev.map(item => {
+            
+            setItemCar((prev) =>
+                prev.map((item) => {
                     if (item.id === id) {
                         return { ...item, quantity: item.quantity - 1 };
                     }
@@ -49,8 +60,8 @@ function ProductCar({ itemCar, setItemCar, total, setTotal }) {
                 })
             );
 
-            // Después actualizás el total
-            setTotal(prev => prev - price);
+            
+            setTotal((prevTotal) => prevTotal - precioU);
         }
     }
 
@@ -127,7 +138,7 @@ function ProductCar({ itemCar, setItemCar, total, setTotal }) {
                                             <img src={item.shoesImage} alt="" />
                                         </div>
                                         <div className="w-full flex justify-between items-center">
-                                            <p className="font-satoshiB text-lg">{item.newShoesPrice}</p>
+                                            <p className="font-satoshiB text-lg">{item.priceUnitario}</p>
                                             <div className="flex gap-7.5 items-center">
 
                                                 {/* Plus Icon */}

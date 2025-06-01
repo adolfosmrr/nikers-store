@@ -15,50 +15,52 @@ function App() {
   const [total, setTotal] = useState(0);
 
   useEffect(() => {
-  const data = localStorage.getItem('cart');
+    const data = localStorage.getItem('cart');
 
-  if (data) {
-    try {
-      const parsed = JSON.parse(data);
-      const now = new Date();
-      const expires = new Date(parsed.expires_at);
+    if (data) {
+      try {
+        const parsed = JSON.parse(data);
+        const now = new Date();
+        const expires = new Date(parsed.expires_at);
 
-      if (expires > now && Array.isArray(parsed.cart)) {
-        // Asegura que quantity exista en todos
-        const cartWithDefaults = parsed.cart.map(item => ({
-          ...item,
-          quantity: item.quantity ?? 1
-        }));
+        if (expires > now && Array.isArray(parsed.cart)) {
 
-        setItemCar(cartWithDefaults);
+          const cartWithDefaults = parsed.cart.map(item => ({
+            ...item,
+            quantity: item.quantity ?? 1
+          }));
 
-        const total = cartWithDefaults.reduce((acc, item) => {
-          const price = parseFloat(item.newShoesPrice?.replace('$', '') || 0);
-          return acc + price * item.quantity;
-        }, 0);
-        
-        setTotal(total);
-      } else {
+          setItemCar(cartWithDefaults);
+
+          const total = cartWithDefaults.reduce((acc, item) => {
+            const price = parseFloat(item.newShoesPrice?.replace('$', '') || 0);
+            return acc + price * item.quantity;
+          }, 0);
+
+          setTotal(total);
+        } else {
+          localStorage.removeItem('cart');
+        }
+      } catch (error) {
+        console.error("Error al parsear el carrito desde localStorage:", error);
         localStorage.removeItem('cart');
       }
-    } catch (error) {
-      console.error("Error al parsear el carrito desde localStorage:", error);
-      localStorage.removeItem('cart');
     }
-  }
-}, []);
+  }, []);
 
-useEffect(() => {
-  // Solo guarda si hay al menos un item válido
-  if (Array.isArray(itemCar) && itemCar.length > 0) {
+  useEffect(() => {
+    if (!Array.isArray(itemCar) || itemCar.length === 0) {
+      localStorage.removeItem('cart');
+      return;
+    }
     const data = {
       timestamp: new Date(),
       expires_at: new Date(Date.now() + 48 * 60 * 60 * 1000), // 48 horas
-      cart: itemCar
+      cart: itemCar,
     };
     localStorage.setItem('cart', JSON.stringify(data));
-  }
-}, [itemCar]);
+  }, [itemCar]);
+
 
   return (
     <BrowserRouter>
