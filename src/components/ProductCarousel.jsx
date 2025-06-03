@@ -6,10 +6,9 @@ import { useRef, useEffect } from 'react'
 // Swiper
 
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { Navigation, Pagination, Controller } from 'swiper/modules'
+import { Navigation, Controller } from 'swiper/modules'
 
 // import 'swiper/css';
-import 'swiper/css/pagination';
 import { Link } from "react-router-dom";
 
 function ProductCarousel({ setItemCar, setTotal, Title }) {

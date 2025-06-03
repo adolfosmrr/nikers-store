@@ -73,11 +73,11 @@ function ProductCar({ itemCar, setItemCar, total, setTotal }) {
     return (
 
         <div className="carBg fixed z-999999 bg-black/70 backdrop-blur-sm w-full h-screen opacity-0 pointer-events-none">
-            <div className="w-full h-screen max-w-8x1 mx-auto px-2.5 tabletScreen:px-10 deskScreen:px-2.5 flex justify-between items-start py-3.5">
+            <div className="w-full h-screen max-w-8x1 mx-auto px-2.5 py-3.5 tabletScreen:px-10 deskScreen:px-2.5 420:flex 420:justify-between 420:items-start">
 
                 {/* Logo */}
 
-                <div>
+                <div className="hidden 420:block">
                     <svg width="79" height="29" viewBox="0 0 79 29" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g clip-path="url(#clip0_52_1561)">
                             <path d="M18.3667 2.50167C18.3667 2.50167 17.1131 5.36964 19.2134 5.96809C19.868 6.08713 20.6143 5.9773 21.7227 5.42488L33.7089 0L21.639 7.70492C21.639 7.70492 18.6338 9.82582 17.1365 8.45529C15.6386 7.08477 17.1847 4.14248 18.3674 2.50167" fill="#E4E4E4" />
@@ -99,7 +99,7 @@ function ProductCar({ itemCar, setItemCar, total, setTotal }) {
 
                 {/* Car */}
 
-                <div className="carWrapper w-1/3 max-h-full h-fit bg-soft-white pt-5 rounded-sm flex flex-col">
+                <div className="carWrapper max-h-full h-fit bg-soft-white pt-5 rounded-sm flex flex-col 420:w-3/5 720:w-3/6 920:w-1/3">
 
                     {/* Top Items */}
 
@@ -133,12 +133,21 @@ function ProductCar({ itemCar, setItemCar, total, setTotal }) {
                             itemCar.length > 0 ?
                                 itemCar.map((item) => (
                                     <div key={item.id} className="w-full p-5 bg-[#D9D9D9] flex flex-col justify-between gap-4 rounded-2xl">
-                                        <h1 className='font-advercase text-3xl text-dark-grey'>{item.newShoesTitle}</h1>
+
+                                        {/* Title */}
+
+                                        <h1 className='font-advercase text-2xl text-dark-grey 920:text-3xl'>{item.newShoesTitle}</h1>
+
+                                        {/* Image */}
+
                                         <div className="w-full">
                                             <img src={item.shoesImage} alt="" />
                                         </div>
+
+                                        {/* Price */}
+
                                         <div className="w-full flex justify-between items-center">
-                                            <p className="font-satoshiB text-lg">{item.priceUnitario}</p>
+                                            <p className="font-satoshiB text-sm 720:text-lg">${item.priceUnitario}.00</p>
                                             <div className="flex gap-7.5 items-center">
 
                                                 {/* Plus Icon */}

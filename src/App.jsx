@@ -72,7 +72,7 @@ function App() {
         <Route path="/AboutUs" element={<AboutUs />} />
         <Route path="/ProductMen" element={<ProductMen />} />
         <Route path="/ProductWomen" element={<ProductWomen />} />
-        <Route path='/sneakers/:slug' element={<ProductDetail />}></Route>
+        <Route path='/sneakers/:slug' element={<ProductDetail setItemCar={setItemCar} setTotal={setTotal} />}></Route>
       </Routes>
     </BrowserRouter>
     // <ProductDetail />
