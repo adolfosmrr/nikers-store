@@ -80,11 +80,11 @@ function ProductDetail({ setItemCar, setTotal }) {
 
     return (
 
-        <section className="w-full h-screen min-h-[850px] bg-soft-white">
+        <section className="w-full h-screen min-h-[850px] bg-soft-white 920:flex">
 
-            {/* Picture Carousel */}
+            {/* Picture Carousel Swiper */}
 
-            <div className="w-full h-1/2 relative flex justify-end items-end pr-2.5 pb-2.5">
+            <div className="w-full h-1/2 relative flex justify-end items-end pr-2.5 pb-2.5 920:w-1/2 920:h-full">
 
                 <Swiper
                     slidesPerView={1}
@@ -105,8 +105,8 @@ function ProductDetail({ setItemCar, setTotal }) {
 
                                 return (
 
-                                    <SwiperSlide key={index} className="w-full h-full flex justify-center items-center">
-                                        <img src={`${pictureRoute}${slide}`} alt={slide.name} className="w-full h-full object-cover" />
+                                    <SwiperSlide key={index} className="w-full h-full !flex justify-center items-center bg-[#F3F3F3]">
+                                        <img src={`${pictureRoute}${slide}`} alt={slide.name} className="w-full h-full object-cover 920:h-auto" />
                                     </SwiperSlide>
                                 )
                             })
@@ -138,7 +138,7 @@ function ProductDetail({ setItemCar, setTotal }) {
 
             {/* Sneaker Detail */}
 
-            <div className="w-full h-1/2 max-w-8x1 mx-auto px-2.5 py-7">
+            <div className="w-full h-1/2 max-w-8x1 mx-auto px-2.5 py-7 920:w-1/2 920:h-full 920:flex 920:flex-col 920:justify-center 920:px-5">
 
                 {/* Title & Price */}
 
