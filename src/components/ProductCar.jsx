@@ -5,8 +5,8 @@ function ProductCar({ itemCar, setItemCar, total, setTotal }) {
 
     {/* Función para eliminar producto del carrito */ }
 
-    function removeItem(id) {
-        const itemToRemove = itemCar.find((item) => item.id === id);
+    function removeItem(id, size) {
+        const itemToRemove = itemCar.find((item) => item.id === id && item.size === size);
         if (!itemToRemove) return;
 
         const cantidadActual = itemToRemove.quantity;
@@ -14,21 +14,21 @@ function ProductCar({ itemCar, setItemCar, total, setTotal }) {
 
         setTotal((prev) => prev - precioU * cantidadActual);
 
-        setItemCar((prev) => prev.filter((item) => item.id !== id));
+        setItemCar((prev) => prev.filter((item) => !(item.id === id && item.size === size)));
     }
 
     {/* Función para aumentar la cantidad del producto del carrito */ }
 
-    function increaseItem(id) {
+    function increaseItem(id, size) {
 
-        const itemToUpdate = itemCar.find((item) => item.id === id);
+        const itemToUpdate = itemCar.find((item) => item.id === id && item.size === size);
         if (!itemToUpdate) return;
 
         const precioU = itemToUpdate.priceUnitario;
 
         setItemCar((prev) =>
             prev.map((item) => {
-                if (item.id === id) {
+                if (item.id === id && item.size === size) {
                     return { ...item, quantity: item.quantity + 1 };
                 }
                 return item;
@@ -40,20 +40,20 @@ function ProductCar({ itemCar, setItemCar, total, setTotal }) {
 
     {/* Función para disminuir la cantidad del producto del carrito */ }
 
-    function decreaseItem(id) {
-        const itemToUpdate = itemCar.find((item) => item.id === id);
+    function decreaseItem(id, size) {
+        const itemToUpdate = itemCar.find((item) => item.id === id && item.size === size);
         if (!itemToUpdate) return;
 
         const precioU = itemToUpdate.priceUnitario;
 
         if (itemToUpdate.quantity === 1) {
             
-            removeItem(id);
+            removeItem(id, size);
         } else {
             
             setItemCar((prev) =>
                 prev.map((item) => {
-                    if (item.id === id) {
+                    if (item.id === id && item.size === size) {
                         return { ...item, quantity: item.quantity - 1 };
                     }
                     return item;
@@ -150,7 +150,7 @@ function ProductCar({ itemCar, setItemCar, total, setTotal }) {
                                             <p className="font-satoshiB text-sm 720:text-lg">${item.priceUnitario}.00</p>
                                             <div className="flex gap-7.5 items-center">
 
-                                                {/* Plus Icon */}
+                                                {/* Add Icon */}
 
                                                 <div className="size-6 bg-dark-grey flex justify-center items-center rounded-full cursor-pointer relative transition-all duration-300  hover:rotate-180" onClick={() => increaseItem(item.id)}>
                                                     <div className="w-0.5 h-2.5 bg-soft-white absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
@@ -163,7 +163,7 @@ function ProductCar({ itemCar, setItemCar, total, setTotal }) {
 
                                                 {/* Delet Icon */}
 
-                                                <div className="size-6 bg-dark-grey flex justify-center items-center rounded-full group cursor-pointer" onClick={() => decreaseItem(item.id)}>
+                                                <div className="size-6 bg-dark-grey flex justify-center items-center rounded-full group cursor-pointer" onClick={() => decreaseItem(item.id, item.size)}>
                                                     <div className="w-2.5 h-0.5 bg-soft-white group-hover:w-full transition-all"></div>
                                                 </div>
                                             </div>

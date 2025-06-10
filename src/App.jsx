@@ -1,8 +1,9 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 import Header from './components/Header';
 import ProductCar from './components/ProductCar';
+import ScrollToTop from './hooks/ScrollToTop';
 
 import Home from './pages/Home';
 import AboutUs from './components/AboutUs';
@@ -32,9 +33,13 @@ function App() {
 
           setItemCar(cartWithDefaults);
 
-          const total = cartWithDefaults.reduce((acc, item) => {
+          /* const total = cartWithDefaults.reduce((acc, item) => {
             const price = parseFloat(item.newShoesPrice?.replace('$', '') || 0);
             return acc + price * item.quantity;
+          }, 0); */
+
+          const total = cartWithDefaults.reduce((acc, item) => {
+            return acc + (item.priceUnitario || 0) * item.quantity;
           }, 0);
 
           setTotal(total);
@@ -64,6 +69,7 @@ function App() {
 
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <ProductCar itemCar={itemCar} setItemCar={setItemCar} total={total} setTotal={setTotal} />
       <Header itemCar={itemCar} />
 

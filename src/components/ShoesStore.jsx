@@ -66,7 +66,7 @@ function ShoesStore() {
 
                                     {/* Price */}
 
-                                    <p className="text-base font-satoshiM text-dark-grey 920:text-lg">${item.price}</p>
+                                    <p className="text-base font-satoshiB text-dark-grey 920:text-lg">${item.price}</p>
 
                                     {/* Add and Buy Button */}
 

@@ -67,7 +67,7 @@ function ProductDetail({ setItemCar, setTotal }) {
                 const updatedCar = [...prevCar];
                 updatedCar[id] = {
                     ...updatedCar[id],
-                    quantity: updatedCar[id].quantity + 1.
+                    quantity: updatedCar[id].quantity + 1
                 };
                 return updatedCar;
             } else {
@@ -75,7 +75,7 @@ function ProductDetail({ setItemCar, setTotal }) {
             }
         });
 
-        setTotal((prevTotal) => prevTotal + sneaker.price);
+        setTotal((prevTotal) => prevTotal + newItem.priceUnitario);
     }
 
     return (

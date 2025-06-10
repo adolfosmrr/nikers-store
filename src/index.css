@@ -102,6 +102,14 @@
   background-color: #fff;
 }
 
+/* New Shoes */
+
+select {
+  -webkit-appearance: none; /* Para navegadores basados en WebKit como Chrome y Safari */
+  -moz-appearance: none;    /* Para Firefox */
+  appearance: none;         /* Estándar, para otros navegadores */
+}
+
 /* Car */
 
 .carWrapper, .burgerWrapper {

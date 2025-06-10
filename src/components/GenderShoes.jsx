@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 import gsap from "gsap";
 
 function GenderShoes() {
@@ -7,12 +8,14 @@ function GenderShoes() {
         {
             background: '/images/background/men-bg.avif',
             title: 'Hombres',
-            contentStyle: ['w-full', 'flex', 'justify-end', 'items-center', 'gap-3.5', 'transition-all', 'group-hover:gap-5']
+            contentStyle: ['w-full', 'flex', 'justify-end', 'items-center', 'gap-3.5', 'transition-all', 'group-hover:gap-5'],
+            link: '/ProductMen'
         },
         {
             background: '/images/background/women-bg.avif',
             title: 'Mujeres',
-            contentStyle: ['w-full', 'flex', 'justify-end', 'items-center', 'gap-3.5', 'transition-all', 'group-hover:gap-5', '720:justify-start']
+            contentStyle: ['w-full', 'flex', 'justify-end', 'items-center', 'gap-3.5', 'transition-all', 'group-hover:gap-5', '720:justify-start'],
+            link: '/ProductWomen'
         },
     ]
 
@@ -21,8 +24,8 @@ function GenderShoes() {
             <div className="w-full h-full flex flex-col 720:flex-row">
                 {
                     options.map((item, index) => (
-                        <a href="#" className="w-full 720:w-1/2 h-full relative cursor-pointer group">
-
+                        <Link to={item.link} className="w-full 720:w-1/2 h-full relative cursor-pointer group">
+                            
                             {/* Background */}
 
                             <div className="w-full h-full absolute top-0 left-0 z-0">
@@ -41,7 +44,8 @@ function GenderShoes() {
                                     </div>
                                 </div>
                             </div>
-                        </a>
+                            
+                        </Link>
                     ))
                 }
             </div>
