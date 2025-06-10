@@ -152,7 +152,7 @@ function ProductCar({ itemCar, setItemCar, total, setTotal }) {
 
                                                 {/* Add Icon */}
 
-                                                <div className="size-6 bg-dark-grey flex justify-center items-center rounded-full cursor-pointer relative transition-all duration-300  hover:rotate-180" onClick={() => increaseItem(item.id)}>
+                                                <div className="size-6 bg-dark-grey flex justify-center items-center rounded-full cursor-pointer relative transition-all duration-300  hover:rotate-180" onClick={() => increaseItem(item.id, item.size)}>
                                                     <div className="w-0.5 h-2.5 bg-soft-white absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
                                                     <div className="w-2.5 h-0.5 bg-soft-white"></div>
                                                 </div>

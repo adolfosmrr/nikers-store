@@ -100,12 +100,12 @@ function NewShoes({ itemCar, setItemCar, setTotal }) {
 
                                                 {/* Add Button */}
                                                 <div className="add size-[20px] deskScreen:size-[25px] bg-soft-white rounded-full flex justify-center items-center relative transition-all hover:rotate-180 cursor-pointer"
-                                                    onClick={() => { // 'e' ya no es necesario aquí si lees del estado
+                                                    onClick={() => { 
 
-                                                        // Obtener la talla seleccionada del estado 'selectedSizesForItems'
+                                                        
                                                         const selectedSize = selectedSizesForItems[item.id];
 
-                                                        // La validación ahora sí funcionará correctamente
+                                                        
                                                         if (!selectedSize || selectedSize === "") {
                                                             alert('Por favor seleccioná una talla antes de agregar al carrito.');
                                                             return;
@@ -140,10 +140,10 @@ function NewShoes({ itemCar, setItemCar, setTotal }) {
 
                                                         setTotal((prev) => prev + item.price);
 
-                                                        // Opcional: Si quieres resetear el select a "Talla" después de añadir
+                                                        
                                                         setSelectedSizesForItems(prevSizes => {
                                                             const newSizes = { ...prevSizes };
-                                                            delete newSizes[item.id]; // O newSizes[item.id] = ''; para volver al value=""
+                                                            delete newSizes[item.id]; 
                                                             return newSizes;
                                                         });
                                                     }}
