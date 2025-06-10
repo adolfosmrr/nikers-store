@@ -76,7 +76,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home itemCar={itemCar} setItemCar={setItemCar} setTotal={setTotal} />} />
         <Route path="/AboutUs" element={<AboutUs />} />
-        <Route path="/ProductMen" element={<ProductMen />} />
+        <Route path="/ProductMen" element={<ProductMen itemCar={itemCar} setItemCar={setItemCar} setTotal={setTotal}/>} />
         <Route path="/ProductWomen" element={<ProductWomen />} />
         <Route path='/sneakers/:slug' element={<ProductDetail setItemCar={setItemCar} setTotal={setTotal} />}></Route>
       </Routes>

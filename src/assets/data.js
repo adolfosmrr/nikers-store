@@ -1,5 +1,49 @@
 export const stories = [
     {
+        id: 1,
+        profileImg: '/images/home-carousel/lifestyle-profile.avif',
+        profileName: 'Nike Lifestyle',
+        title: [
+            'Paul Rodriguez',
+            'Zoom Air Low',
+            'Los 20 años de carrera de Paul Rodriguez junto a Nike.'
+        ],
+        titleClases: [
+            ['text-soft-white', 'font-advercase', 'text-6xl', 'absolute', 't-0'],
+            ['text-soft-white', 'font-advercase', 'text-6xl', 'absolute', 't-0'],
+            ['text-soft-white', 'font-satoshiR', 'text-lg', 'absolute', 't-0']
+        ],
+        shoesImage: '/images/shoes/paul-rodriguez/cover.avif',
+        linkLabel: 'Comprar ahora',
+        linkSrc: 'nike.com',
+        storyBg: '/images/home-carousel/paul-r--bg.avif',
+        newShoesTitle: 'Paul Rodriguez Zoom Air Low',
+        newShoesPrice: '$120.00',
+        subTitle: 'Los 20 años de carrera de Paul Rodriguez junto a Nike.'
+    },
+    {
+        id: 2,
+        profileImg: '/images/home-carousel/lifestyle-profile.avif',
+        profileName: 'Jordan',
+        title: [
+            'Air Jordan 4',
+            'White Cement',
+            'La actitud. La historia. Los momentos.'
+        ],
+        titleClases: [
+            ['text-soft-white', 'font-advercase', 'text-6xl', 'absolute', 't-0'],
+            ['text-soft-white', 'font-advercase', 'text-6xl', 'absolute', 't-0'],
+            ['text-soft-white', 'font-satoshiR', 'text-lg', 'absolute', 't-0']
+        ],
+        shoesImage: '/images/shoes/air-jordan-4/cover.avif',
+        linkLabel: 'Comprar ahora',
+        linkSrc: 'behance.net',
+        storyBg: '/images/home-carousel/air-jordan-4--bg.avif',
+        newShoesTitle: 'Air Jordan 4',
+        newShoesPrice: '$225.00',
+        subTitle: 'La actitud. La historia. Los momentos.'
+    },
+    {
         id: 3,
         profileImg: '/images/home-carousel/lifestyle-profile.avif',
         profileName: 'Nike Lifestyle',
@@ -20,28 +64,6 @@ export const stories = [
         newShoesTitle: 'Air Force 1 Low Retro',
         newShoesPrice: '$150.00',
         subTitle: 'Una leyenda silenciosa desde 2002.'
-    },
-    {
-        id: 19,
-        profileImg: '/images/home-carousel/lifestyle-profile.avif',
-        profileName: 'Nike Lifestyle',
-        title: [
-            'Nike Air Max 1',
-            "'86 Premium",
-            'La primera zapatilla que mostró al mundo el Nike Air.'
-        ],
-        titleClases: [
-            ['text-soft-white', 'font-advercase', 'text-6xl', 'absolute', 't-0'],
-            ['text-soft-white', 'font-advercase', 'text-6xl', 'absolute', 't-0'],
-            ['text-soft-white', 'font-satoshiR', 'text-lg', 'absolute', 't-0']
-        ],
-        shoesImage: '/images/shoes/nike-air-max-1-86-premium/cover.avif',
-        linkLabel: 'Comprar ahora',
-        linkSrc: 'www.nike.com',
-        storyBg: '/images/home-carousel/air-max--bg.avif',
-        newShoesTitle: "Nike Air Max 1 '86 Premium",
-        newShoesPrice: '$150.00',
-        subTitle: 'La primera zapatilla que mostró al mundo el Nike Air.'
     },
     {
         id: 7,
@@ -88,47 +110,25 @@ export const stories = [
         subTitle: 'La layenda del básquet de los 80 volvió con todo.'
     },
     {
-        id: 1,
+        id: 19,
         profileImg: '/images/home-carousel/lifestyle-profile.avif',
         profileName: 'Nike Lifestyle',
         title: [
-            'Paul Rodriguez',
-            'Zoom Air Low',
-            'Los 20 años de carrera de Paul Rodriguez junto a Nike.'
+            'Nike Air Max 1',
+            "'86 Premium",
+            'La primera zapatilla que mostró al mundo el Nike Air.'
         ],
         titleClases: [
             ['text-soft-white', 'font-advercase', 'text-6xl', 'absolute', 't-0'],
             ['text-soft-white', 'font-advercase', 'text-6xl', 'absolute', 't-0'],
             ['text-soft-white', 'font-satoshiR', 'text-lg', 'absolute', 't-0']
         ],
-        shoesImage: '/images/shoes/paul-rodriguez/cover.avif',
+        shoesImage: '/images/shoes/nike-air-max-1-86-premium/cover.avif',
         linkLabel: 'Comprar ahora',
-        linkSrc: 'nike.com',
-        storyBg: '/images/home-carousel/paul-r--bg.avif',
-        newShoesTitle: 'Paul Rodriguez Zoom Air Low',
-        newShoesPrice: '$120.00',
-        subTitle: 'Los 20 años de carrera de Paul Rodriguez junto a Nike.'
-    },
-    {
-        id: 2,
-        profileImg: '/images/home-carousel/lifestyle-profile.avif',
-        profileName: 'Jordan',
-        title: [
-            'Air Jordan 4',
-            'White Cement',
-            'La actitud. La historia. Los momentos.'
-        ],
-        titleClases: [
-            ['text-soft-white', 'font-advercase', 'text-6xl', 'absolute', 't-0'],
-            ['text-soft-white', 'font-advercase', 'text-6xl', 'absolute', 't-0'],
-            ['text-soft-white', 'font-satoshiR', 'text-lg', 'absolute', 't-0']
-        ],
-        shoesImage: '/images/shoes/air-jordan-4/cover.avif',
-        linkLabel: 'Comprar ahora',
-        linkSrc: 'behance.net',
-        storyBg: '/images/home-carousel/air-jordan-4--bg.avif',
-        newShoesTitle: 'Air Jordan 4',
-        newShoesPrice: '$225.00',
-        subTitle: 'La actitud. La historia. Los momentos.'
+        linkSrc: 'www.nike.com',
+        storyBg: '/images/home-carousel/air-max--bg.avif',
+        newShoesTitle: "Nike Air Max 1 '86 Premium",
+        newShoesPrice: '$150.00',
+        subTitle: 'La primera zapatilla que mostró al mundo el Nike Air.'
     },
 ]

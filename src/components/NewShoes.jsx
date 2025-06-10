@@ -8,9 +8,7 @@ function NewShoes({ itemCar, setItemCar, setTotal }) {
     const [sneakers, setSneakers] = useState([]);
     const [loading, setLoading] = useState(true);
     const [selectedSizesForItems, setSelectedSizesForItems] = useState({})
-
     const slugify = (str) => str.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]+/g, '');
-
     const navigate = useNavigate();
 
     useEffect(() => {

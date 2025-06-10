@@ -1,7 +1,9 @@
 import { stories } from "../assets/data";
 import { useState } from "react";
 import gsap from "gsap";
+import { Navigate, useNavigate } from "react-router-dom";
 import { useRef, useEffect } from 'react'
+import { slugify } from "../utils/slugify";
 
 // Swiper
 
@@ -18,6 +20,26 @@ function ProductCarousel({ setItemCar, setTotal, Title }) {
     const [firstSwiper, setFirstSwiper] = useState(null);
     const [secondSwiper, setSecondSwiper] = useState(null);
     const [navReady, setNavReady] = useState(false);
+    const [sneakers, setSneakers] = useState([])
+    const [loading, setLoading] = useState(true);
+    const slugify = (str) => str.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]+/g, '');
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        fetch("https://6825fe46397e48c913148b73.mockapi.io/products/v1/sneakers")
+            .then(res => res.json())
+            .then(data => {
+                const newSneakers = data.filter(item => item.newShoes === true);
+                setSneakers(newSneakers);
+                setLoading(false);
+            })
+            .catch(error => {
+                console.error('Error al cargar los datos:', error);
+                setLoading(false);
+            });
+    }, []);
+
+
 
     useEffect(() => {
         if (prevRef.current && nextRef.current) {
@@ -29,7 +51,7 @@ function ProductCarousel({ setItemCar, setTotal, Title }) {
 
         // ---- Carrousel Hero Section
 
-        <section className="w-full h-screen min-h-[1000px] 991:min-h-[800px] bg-soft-white">
+        <section className="w-full h-screen min-h-[1000px] 920:min-h-[700px] bg-soft-white">
             <div className="w-full h-full max-w-[1920px] max-auto 1024:flex 1024:flex-row 1024:justify-between 1024:items-center">
 
                 {/* Big Swiper Picture */}
@@ -64,7 +86,7 @@ function ProductCarousel({ setItemCar, setTotal, Title }) {
 
                                     <div className="w-full h-full flex items-end relative z-3">
                                         <div className="w-full pb-5 pl-2.5 1024:pl-10 1024:pb-10">
-                                            <h1 className="font-advercase text-soft-white text-3xl text-balance 420:text-4xl 720:text-5xl 1024:text-6xl">{slide.newShoesTitle}</h1>
+                                            <h1 className="font-advercase text-soft-white text-3xl text-balance 420:text-4xl 720:text-5xl 1024:text-6xl mb-1.5">{slide.newShoesTitle}</h1>
                                             <p className="font-satoshiR text-soft-white text-base 420:text-lg 991:text-lg">{slide.subTitle}</p>
                                         </div>
                                     </div>
@@ -99,37 +121,26 @@ function ProductCarousel({ setItemCar, setTotal, Title }) {
                                 className="w-full mb-7"
                             >
                                 {
-                                    stories.map((slide, index) => (
-                                        <SwiperSlide key={index} className="flex-shrink-0 rounded-2xl p-5 bg-[linear-gradient(180deg,#F3F3F3,#644530)] overflow-hidden 1024:!w-3/4 1280:!w-2/3">
-                                            <img src={slide.shoesImage} alt={slide.newShoesTitle} className="-mt-10 1024:mt-0 mb-5 w-[280px] 1024:w-full mx-auto" />
-                                            <h2 className="font-advercase text-soft-white text-lg">{slide.newShoesTitle}</h2>
-                                            <p className="font-satoshiB text-soft-white mb-9">{slide.newShoesPrice}</p>
-                                            <div className="w-full flex justify-end items-center gap-3.5">
+                                    sneakers.map((slide, index) => {
 
-                                                {/* + Button */}
+                                        const coverImageName = slide.images.find(imageName => imageName.includes('cover.avif'));
+                                        const coverImageUrl = coverImageName ? `/images/shoes/${coverImageName}` : '';
 
-                                                <div className="size-[20px] deskScreen:size-[25px] bg-soft-white rounded-full flex justify-center items-center relative transition-all hover:rotate-180 cursor-pointer" onClick={() => {
-                                                    setItemCar(prev => [...prev, {
-                                                        id: item.id,
-                                                        shoesImage: item.shoesImage,
-                                                        newShoesTitle: item.newShoesTitle,
-                                                        newShoesPrice: item.newShoesPrice
-                                                    }])
+                                        return (
+                                            <SwiperSlide key={index} className="flex-shrink-0 rounded-2xl p-5 bg-[linear-gradient(180deg,#F3F3F3,#644530)] overflow-hidden 1024:!w-3/4 1280:!w-2/3">
+                                                <img src={coverImageUrl} alt={slide.name} className="-mt-10 1024:mt-0 mb-5 w-[280px] 1024:w-full mx-auto" />
+                                                <h2 className="font-advercase text-soft-white text-lg">{slide.name}</h2>
+                                                <p className="font-satoshiB text-soft-white mb-9">${slide.price}.00</p>
+                                                <div className="w-full flex justify-end items-center">
 
-                                                    const priceNumber = parseFloat(item.newShoesPrice.replace('$', ''));
-                                                    setTotal(prev => prev + priceNumber);
-                                                }}>
-                                                    <div className="w-2.5 h-0.5 bg-dark-grey"></div>
-                                                    <div className="w-0.5 h-2.5 bg-dark-grey absolute top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2"></div>
+                                                    {/* Botón de Compra */}
+
+                                                    <a onClick={() => navigate(`/sneakers/${slugify(slide.name)}`)} className="px-5 py-2 bg-soft-white flex justify-center items-center cursor-pointer rounded-md"><p className="font-advercase text-dark-grey">Ver mas</p></a>
+
                                                 </div>
-
-                                                {/* Botón de Compra */}
-
-                                                <Link className="px-5 py-2 bg-soft-white flex justify-center items-center cursor-pointer rounded-md"><p className="font-advercase text-dark-grey">{slide.linkLabel}</p></Link>
-
-                                            </div>
-                                        </SwiperSlide>
-                                    ))
+                                            </SwiperSlide>
+                                        )
+                                    })
                                 }
                             </Swiper>
 
