@@ -62,7 +62,7 @@ function Header({ itemCar }) {
                             ))}
                             {user && user.role === 'admin' && (
                                 <li className="mx-4">
-                                    <Link to="/admin" className="font-advercase text-lg text-dark-grey hover:text-gray-600 transition-colors">
+                                    <Link to="/admin" className="font-satoshiM text-soft-white text-sm p-2 border-soft-white border-1 rounded-md">
                                         Admin
                                     </Link>
                                 </li>
@@ -120,7 +120,7 @@ function Header({ itemCar }) {
 
                         </div>
                         {isAuthenticated && (
-                            <button onClick={logout} className="font-advercase text-sm text-dark-grey hover:text-gray-600 transition-colors hidden 720:block">
+                            <button onClick={logout} className="hidden font-sathoshiM text-sm text-dark-grey p-2 bg-soft-white rounded-md 920:block cursor-pointer">
                                 Salir
                             </button>
                         )}
@@ -191,14 +191,14 @@ function Header({ itemCar }) {
                             <ul className="flex flex-col items-center">
                                 {linksNames.map((link, index) => (
                                     <li key={index} className="my-2">
-                                        <Link onClick={burgerMenuClose} to={linkSrc[index]} className="font-advercase text-2xl text-dark-grey hover:text-gray-600 transition-colors">
+                                        <Link onClick={burgerMenuClose} to={linkSrc[index]} className="font-sathoshiM text-dark-grey">
                                             {link}
                                         </Link>
                                     </li>
                                 ))}
                                 {user && user.role === 'admin' && (
                                     <li className="my-2">
-                                        <Link onClick={burgerMenuClose} to="/admin" className="font-advercase text-2xl text-dark-grey hover:text-gray-600 transition-colors">
+                                        <Link onClick={burgerMenuClose} to="/admin" className="font-satoshiM text-dark-grey">
                                             Admin
                                         </Link>
                                     </li>
@@ -214,21 +214,7 @@ function Header({ itemCar }) {
                                 </button>
                             </div>
                         )}
-
-                        <a href="www.instagram.com">
-                            <svg width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <g clip-path="url(#clip0_66_2863)">
-                                    <path d="M8.77585 5.50781C6.28525 5.50781 4.27632 7.51172 4.27632 9.99609C4.27632 12.4805 6.28525 14.4844 8.77585 14.4844C11.2665 14.4844 13.2754 12.4805 13.2754 9.99609C13.2754 7.51172 11.2665 5.50781 8.77585 5.50781ZM8.77585 12.9141C7.16636 12.9141 5.85057 11.6055 5.85057 9.99609C5.85057 8.38672 7.16245 7.07812 8.77585 7.07812C10.3893 7.07812 11.7011 8.38672 11.7011 9.99609C11.7011 11.6055 10.3853 12.9141 8.77585 12.9141ZM14.5089 5.32422C14.5089 5.90625 14.039 6.37109 13.4594 6.37109C12.8759 6.37109 12.4099 5.90234 12.4099 5.32422C12.4099 4.74609 12.8799 4.27734 13.4594 4.27734C14.039 4.27734 14.5089 4.74609 14.5089 5.32422ZM17.489 6.38672C17.4225 4.98438 17.1014 3.74219 16.0714 2.71875C15.0454 1.69531 13.8001 1.375 12.3943 1.30469C10.9453 1.22266 6.60245 1.22266 5.15352 1.30469C3.75157 1.37109 2.50627 1.69141 1.47635 2.71484C0.446436 3.73828 0.129237 4.98047 0.0587479 6.38281C-0.0234889 7.82812 -0.0234889 12.1602 0.0587479 13.6055C0.125321 15.0078 0.446436 16.25 1.47635 17.2734C2.50627 18.2969 3.74766 18.6172 5.15352 18.6875C6.60245 18.7695 10.9453 18.7695 12.3943 18.6875C13.8001 18.6211 15.0454 18.3008 16.0714 17.2734C17.0974 16.25 17.4186 15.0078 17.489 13.6055C17.5713 12.1602 17.5713 7.83203 17.489 6.38672ZM15.6172 15.1562C15.3117 15.9219 14.7204 16.5117 13.9489 16.8203C12.7937 17.2773 10.0525 17.1719 8.77585 17.1719C7.49923 17.1719 4.75408 17.2734 3.60276 16.8203C2.83522 16.5156 2.2439 15.9258 1.93453 15.1562C1.47635 14.0039 1.58209 11.2695 1.58209 9.99609C1.58209 8.72266 1.48027 5.98438 1.93453 4.83594C2.23998 4.07031 2.8313 3.48047 3.60276 3.17187C4.758 2.71484 7.49923 2.82031 8.77585 2.82031C10.0525 2.82031 12.7976 2.71875 13.9489 3.17187C14.7165 3.47656 15.3078 4.06641 15.6172 4.83594C16.0754 5.98828 15.9696 8.72266 15.9696 9.99609C15.9696 11.2695 16.0754 14.0078 15.6172 15.1562Z" fill="#333237" />
-                                </g>
-                                <defs>
-                                    <clipPath id="clip0_66_2863">
-                                        <rect width="17.5439" height="20" fill="white" />
-                                    </clipPath>
-                                </defs>
-                            </svg>
-                        </a>
                     </div>
-
                 </div>
             </div>
         </header>

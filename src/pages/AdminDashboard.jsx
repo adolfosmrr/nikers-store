@@ -197,149 +197,184 @@ function AdminDashboard() {
 
     return (
         <>
-            <section className="w-full max-w-7xl mx-auto py-10 px-5 bg-soft-white">
-                <h1 className="font-advercase text-dark-grey text-4xl text-center mb-10">Panel de Administración</h1>
+            <section className="w-full mx-auto py-10 pt-30 px-5 bg-soft-white">
 
-                {error && <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">{error}</div>}
-                {successMessage && <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4" role="alert">{successMessage}</div>}
+                <div className='max-w-7xl mx-auto'>
 
-                {/* Formulario para Agregar/Editar Productos */}
-                <div className="bg-white shadow-lg rounded-lg p-8 mb-10">
-                    <h2 className="font-advercase text-dark-grey text-3xl mb-6">{editingProduct ? 'Editar Producto' : 'Agregar Nuevo Producto'}</h2>
-                    <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                            <label htmlFor="name" className="block text-dark-grey text-sm font-bold mb-2">Nombre:</label>
-                            <input
-                                type="text"
-                                id="name"
-                                name="name"
-                                value={formData.name}
-                                onChange={handleChange}
-                                className="shadow appearance-none border rounded w-full py-2 px-3 text-dark-grey leading-tight focus:outline-none focus:shadow-outline"
-                                required
-                            />
-                        </div>
-                        <div>
-                            <label htmlFor="price" className="block text-dark-grey text-sm font-bold mb-2">Precio:</label>
-                            <input
-                                type="number"
-                                id="price"
-                                name="price"
-                                value={formData.price}
-                                onChange={handleChange}
-                                className="shadow appearance-none border rounded w-full py-2 px-3 text-dark-grey leading-tight focus:outline-none focus:shadow-outline"
-                                required
-                                min="0.01"
-                                step="0.01"
-                            />
-                        </div>
-                        <div className="md:col-span-2">
-                            <label htmlFor="description" className="block text-dark-grey text-sm font-bold mb-2">Descripción:</label>
-                            <textarea
-                                id="description"
-                                name="description"
-                                value={formData.description}
-                                onChange={handleChange}
-                                className="shadow appearance-none border rounded w-full py-2 px-3 text-dark-grey leading-tight focus:outline-none focus:shadow-outline h-32"
-                                required
-                                minLength="10"
-                            ></textarea>
-                        </div>
-                        <div className="md:col-span-2">
-                            <label htmlFor="images" className="block text-dark-grey text-sm font-bold mb-2">Imágenes (URLs separadas por coma):</label>
-                            <input
-                                type="text"
-                                id="images"
-                                name="images"
-                                value={formData.images}
-                                onChange={handleArrayChange}
-                                className="shadow appearance-none border rounded w-full py-2 px-3 text-dark-grey leading-tight focus:outline-none focus:shadow-outline"
-                                placeholder="img1.avif,img2.avif,cover.avif"
-                            />
-                        </div>
-                        <div className="md:col-span-2">
-                            <label htmlFor="sizes" className="block text-dark-grey text-sm font-bold mb-2">Tallas (Números separados por coma):</label>
-                            <input
-                                type="text"
-                                id="sizes"
-                                name="sizes"
-                                value={formData.sizes}
-                                onChange={handleArrayChange}
-                                className="shadow appearance-none border rounded w-full py-2 px-3 text-dark-grey leading-tight focus:outline-none focus:shadow-outline"
-                                placeholder="7,8,9,10"
-                            />
-                        </div>
-                        <div>
-                            <label htmlFor="gender" className="block text-dark-grey text-sm font-bold mb-2">Género:</label>
-                            <select
-                                id="gender"
-                                name="gender"
-                                value={formData.gender}
-                                onChange={handleChange}
-                                className="shadow border rounded w-full py-2 px-3 text-dark-grey leading-tight focus:outline-none focus:shadow-outline"
-                                required
-                            >
-                                <option value="">Selecciona</option>
-                                <option value="men">Hombres</option>
-                                <option value="women">Mujeres</option>
-                            </select>
-                        </div>
-                        <div className="flex items-center">
-                            <input
-                                type="checkbox"
-                                id="newShoes"
-                                name="newShoes"
-                                checked={formData.newShoes}
-                                onChange={handleChange}
-                                className="mr-2 leading-tight"
-                            />
-                            <label htmlFor="newShoes" className="text-dark-grey text-sm font-bold">Es un producto nuevo</label>
-                        </div>
-                        <div className="md:col-span-2 flex justify-end gap-4 mt-4">
-                            <button
-                                type="submit"
-                                className="bg-dark-grey hover:bg-gray-700 text-soft-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                            >
-                                {editingProduct ? 'Guardar Cambios' : 'Agregar Producto'}
-                            </button>
-                            {editingProduct && (
-                                <button
-                                    type="button"
-                                    onClick={handleCancelEdit}
-                                    className="bg-gray-500 hover:bg-gray-600 text-soft-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                                >
-                                    Cancelar Edición
-                                </button>
-                            )}
-                        </div>
-                    </form>
-                </div>
+                    {/* Admin Page Title */}
 
-                {/* Lista de Productos */}
-                <h2 className="font-advercase text-dark-grey text-3xl text-center mb-6">Productos Existentes</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {sneakers.map(product => (
-                        <div key={product.id} className="bg-white shadow-lg rounded-lg p-6 flex flex-col items-center text-center">
-                            <img src={product.images.find(img => img.includes('cover.avif')) ? `/images/shoes/${product.images.find(img => img.includes('cover.avif'))}` : '/images/placeholder.avif'} alt={product.name} className="w-32 h-32 object-cover mb-4 rounded" />
-                            <h3 className="font-advercase text-xl text-dark-grey mb-2">{product.name}</h3>
-                            <p className="font-satoshiR text-lg text-dark-grey mb-2">${product.price}</p>
-                            <p className="font-satoshiR text-sm text-gray-600 mb-4 line-clamp-3">{product.description}</p>
-                            <div className="flex gap-3">
-                                <button
-                                    onClick={() => handleEditClick(product)}
-                                    className="bg-blue-500 hover:bg-blue-600 text-soft-white font-bold py-2 px-4 rounded text-sm"
-                                >
-                                    Editar
-                                </button>
-                                <button
-                                    onClick={() => handleDeleteClick(product)}
-                                    className="bg-red-500 hover:bg-red-600 text-soft-white font-bold py-2 px-4 rounded text-sm"
-                                >
-                                    Eliminar
-                                </button>
+                    <h1 className="font-advercase text-dark-grey text-4xl text-center mb-10">Panel de Administracion</h1>
+
+                    {error && <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">{error}</div>}
+                    {successMessage && <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4" role="alert">{successMessage}</div>}
+
+                    {/* Add/Delete product form */}
+
+                    <div className='mb-15'>
+                        <h2 className="font-advercase text-dark-grey text-3xl mb-6">{editingProduct ? 'Editar Producto' : 'Agregar Nuevo Producto'}</h2>
+                        <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label htmlFor="name" className="block text-dark-grey text-sm font-satoshiB mb-2">Nombre:</label>
+                                <input
+                                    type="text"
+                                    id="name"
+                                    name="name"
+                                    value={formData.name}
+                                    onChange={handleChange}
+                                    className="shadow appearance-none border rounded w-full py-2 px-3 text-dark-grey leading-tight focus:outline-none focus:shadow-outline"
+                                    required
+                                />
                             </div>
-                        </div>
-                    ))}
+                            <div>
+                                <label htmlFor="price" className="block text-dark-grey text-sm font-satoshiB mb-2">Precio:</label>
+                                <input
+                                    type="number"
+                                    id="price"
+                                    name="price"
+                                    value={formData.price}
+                                    onChange={handleChange}
+                                    className="shadow appearance-none border rounded w-full py-2 px-3 text-dark-grey leading-tight focus:outline-none focus:shadow-outline"
+                                    required
+                                    min="0.01"
+                                    step="0.01"
+                                />
+                            </div>
+                            <div className="md:col-span-2">
+                                <label htmlFor="description" className="block text-dark-grey text-sm font-satoshiB mb-2">Descripción:</label>
+                                <textarea
+                                    id="description"
+                                    name="description"
+                                    value={formData.description}
+                                    onChange={handleChange}
+                                    className="shadow appearance-none border rounded w-full py-2 px-3 text-dark-grey leading-tight focus:outline-none focus:shadow-outline h-32"
+                                    required
+                                    minLength="10"
+                                ></textarea>
+                            </div>
+                            <div className="md:col-span-2">
+                                <label htmlFor="images" className="block text-dark-grey text-sm font-satoshiB mb-2">Imágenes (URLs separadas por coma):</label>
+                                <input
+                                    type="text"
+                                    id="images"
+                                    name="images"
+                                    value={formData.images}
+                                    onChange={handleArrayChange}
+                                    className="shadow appearance-none border rounded w-full py-2 px-3 text-dark-grey leading-tight focus:outline-none focus:shadow-outline"
+                                    placeholder="img1.avif,img2.avif,cover.avif"
+                                />
+                            </div>
+                            <div className="md:col-span-2">
+                                <label htmlFor="sizes" className="block text-dark-grey text-sm font-satoshiB mb-2">Tallas (Números separados por coma):</label>
+                                <input
+                                    type="text"
+                                    id="sizes"
+                                    name="sizes"
+                                    value={formData.sizes}
+                                    onChange={handleArrayChange}
+                                    className="shadow appearance-none border rounded w-full py-2 px-3 text-dark-grey leading-tight focus:outline-none focus:shadow-outline"
+                                    placeholder="7,8,9,10"
+                                />
+                            </div>
+                            <div>
+                                <label htmlFor="gender" className="block text-dark-grey text-sm font-satoshiB mb-2">Género:</label>
+                                <select
+                                    id="gender"
+                                    name="gender"
+                                    value={formData.gender}
+                                    onChange={handleChange}
+                                    className="shadow border rounded w-full py-2 px-3 text-dark-grey leading-tight focus:outline-none focus:shadow-outline"
+                                    required
+                                >
+                                    <option value="">Selecciona</option>
+                                    <option value="men">Hombres</option>
+                                    <option value="women">Mujeres</option>
+                                </select>
+                            </div>
+                            <div className="flex items-center">
+                                <input
+                                    type="checkbox"
+                                    id="newShoes"
+                                    name="newShoes"
+                                    checked={formData.newShoes}
+                                    onChange={handleChange}
+                                    className="mr-2 leading-tight"
+                                />
+                                <label htmlFor="newShoes" className="text-dark-grey text-sm font-satoshiB">Es un producto nuevo</label>
+                            </div>
+                            <div className="md:col-span-2 flex justify-end gap-4 mt-4">
+                                <button
+                                    type="submit"
+                                    className="bg-dark-grey hover:bg-gray-700 text-soft-white font-sathoshiB py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                                >
+                                    {editingProduct ? 'Guardar Cambios' : 'Agregar Producto'}
+                                </button>
+                                {editingProduct && (
+                                    <button
+                                        type="button"
+                                        onClick={handleCancelEdit}
+                                        className="bg-gray-500 hover:bg-gray-600 text-soft-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                                    >
+                                        Cancelar Edición
+                                    </button>
+                                )}
+                            </div>
+                        </form>
+                    </div>
+
+                    {/* Product List */}
+
+                    {/* Product List Title */}
+
+                    <h2 className="font-advercase text-dark-grey text-3xl text-center mb-6">Productos Existentes</h2>
+
+                    {/* Product List Wrapper */}
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                        {/* Sneakers item */}
+
+                        {sneakers.map(product => (
+                            <div key={product.id} className="bg-[#cecece] rounded-lg p-4 flex flex-col items-center justify-between text-center">
+
+                                {/* Sneaker picture */}
+
+                                <img src={product.images.find(img => img.includes('cover.avif')) ? `/images/shoes/${product.images.find(img => img.includes('cover.avif'))}` : '/images/placeholder.avif'} alt={product.name} className="h-2/5 object-cover" />
+
+                                <div className='flex flex-col gap-1'>
+
+                                    {/* Sneaker name */}
+
+                                    <h3 className="font-advercase text-dark-grey">{product.name}</h3>
+
+                                    {/* Sneaker price */}
+
+                                    <p className="font-satoshiB text-dark-grey">${product.price}</p>
+
+                                    {/* Sneaker description */}
+
+                                    <p className="font-satoshiR text-sm text-gray-600 line-clamp-3">{product.description}</p>
+
+                                </div>
+
+                                {/* Sneaker buttons */}
+
+                                <div className="flex gap-3">
+                                    <button
+                                        onClick={() => handleEditClick(product)}
+                                        className="bg-dark-grey text-soft-white font-satoshiB py-2 px-4 rounded text-sm cursor-pointer"
+                                    >
+                                        Editar
+                                    </button>
+                                    <button
+                                        onClick={() => handleDeleteClick(product)}
+                                        className="bg-red-500 text-soft-white font-satoshiB py-2 px-4 rounded text-sm cursor-pointer"
+                                    >
+                                        Eliminar
+                                    </button>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </section>
             <Footer />
