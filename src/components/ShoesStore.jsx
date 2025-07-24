@@ -4,7 +4,7 @@ import { slugify } from "../utils/slugify";
 import gsap from "gsap";
 
 
-function ShoesStore({ itemCar, setItemCar, setTotal }) {
+function ShoesStore({ itemCar, setItemCar, setTotal, addNotification }) {
 
     const [sneakers, setSneakers] = useState([]);
     const [loading, setloading] = useState(true);
@@ -133,6 +133,11 @@ function ShoesStore({ itemCar, setItemCar, setTotal }) {
 
                                                 
                                                 setTotal((prev) => prev + item.price);
+
+                                                addNotification({
+                                                    shoesImage: coverImageUrl,
+                                                    newShoesTitle: item.name,
+                                                })
 
                                                
                                                 setSelectedSizesForItems(prevSizes => {

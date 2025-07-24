@@ -24,18 +24,18 @@ function GenderShoes() {
             <div className="w-full h-full flex flex-col 720:flex-row">
                 {
                     options.map((item, index) => (
-                        <Link to={item.link} className="w-full 720:w-1/2 h-full relative cursor-pointer group">
+                        <Link key={index} to={item.link} className="w-full 720:w-1/2 h-full relative cursor-pointer group">
                             
                             {/* Background */}
 
-                            <div className="w-full h-full absolute top-0 left-0 z-0">
+                            <div key={index + 1} className="w-full h-full absolute top-0 left-0 z-0">
                                 <img className="w-full h-full object-cover object-bottom 720:object-center" src={item.background} alt={item.title} />
                                 <div className="w-full h-full absolute top-0 left-0 z-1 inset-0 bg-gradient-to-t from-black/70 to-black/0"></div>
                             </div>
 
                             {/* Content */}
 
-                            <div className="w-full h-full flex flex-col justify-end relative px-10 py-10">
+                            <div key={index + 2} className="w-full h-full flex flex-col justify-end relative px-10 py-10">
                                 <div className={item.contentStyle.join(' ') }>
                                     <h2 className="font-advercase text-lg tabletScreen:text-2x1 text-soft-white">{item.title}</h2>
                                     <div className="size-[20px] deskScreen:size-[25px] bg-soft-white rounded-full flex justify-center items-center relative group-hover:rotate-180 transition-all">

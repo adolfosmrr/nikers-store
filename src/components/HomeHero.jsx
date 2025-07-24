@@ -9,7 +9,7 @@ function HomeHero() {
     }, []);
 
     return (
-        <section className="w-full h-screen min-h-[800px] max-h-[1080px] bg-black cursor-auto hero:cursor-none">
+        <section className="w-full h-screen min-h-[1000px] max-h-[1080px] bg-black cursor-auto hero:cursor-none">
             <div className="container w-full h-full overflow-hidden min-h-[800px]">
                 <div className="cursor hidden absolute top-0 left-0 size-[100px] hero:flex justify-center items-center bg-black/50 backdrop-blur-xs rounded-full pointer-events-none z-2"><p className="text-soft-white font-satoshiL text-sm uppercase "></p></div>
 

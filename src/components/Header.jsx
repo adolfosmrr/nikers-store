@@ -1,11 +1,13 @@
 import gsap from "gsap";
 import ProductCar from "./ProductCar";
 import { Link } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 
 function Header({ itemCar }) {
 
+    const { isAuthenticated, user, logout } = useAuth();
     const linksNames = ['Nosotros', 'Hombres', 'Mujeres'];
-    const linkSrc = ['/AboutUs', '/ProductMen', '/ProductWomen']
+    const linkSrc = ['/#aboutUs', '/ProductMen', '/ProductWomen']
 
     function showCar() {
 
@@ -15,11 +17,11 @@ function Header({ itemCar }) {
     }
 
     function burgerMenuShow() {
-        gsap.to('.burgerWrapper', {clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)', ease: 'power2.inOut', duration: 0.7})
+        gsap.to('.burgerWrapper', { clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)', ease: 'power2.inOut', duration: 0.7 })
     }
 
     function burgerMenuClose() {
-        gsap.to('.burgerWrapper', {clipPath: 'polygon(100% 0%, 100% 0%, 100% 0%, 100% 0%)', ease: 'power2.inOut', duration: 0.7})
+        gsap.to('.burgerWrapper', { clipPath: 'polygon(100% 0%, 100% 0%, 100% 0%, 100% 0%)', ease: 'power2.inOut', duration: 0.7 })
     }
 
     return (
@@ -58,6 +60,13 @@ function Header({ itemCar }) {
                             {linksNames.map((link, index) => (
                                 <li key={index}><Link className="text-soft-white font-satoshiM cursor-pointer" to={linkSrc[index]}>{link}</Link></li>
                             ))}
+                            {user && user.role === 'admin' && (
+                                <li className="mx-4">
+                                    <Link to="/admin" className="font-advercase text-lg text-dark-grey hover:text-gray-600 transition-colors">
+                                        Admin
+                                    </Link>
+                                </li>
+                            )}
                         </ul>
                     </nav>
 
@@ -67,7 +76,7 @@ function Header({ itemCar }) {
 
                         {/* Profile Icon */}
 
-                        <div>
+                        <Link to="/login" className="cursor-pointer">
                             <svg width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <g clip-path="url(#clip0_5_1197)">
                                     <path d="M11.9101 5.00063C11.9101 3.27506 10.5074 1.87524 8.77551 1.87524C7.04362 1.87524 5.64095 3.2738 5.64095 5.00063C5.64095 6.72746 7.04362 8.12602 8.77551 8.12602C10.5074 8.12602 11.9101 6.72746 11.9101 5.00063ZM3.76147 5.00063C3.76147 2.23871 6.00675 0 8.77551 0C11.5443 0 13.7908 2.23871 13.7908 5.00063C13.7908 7.76255 11.5455 10.0013 8.77551 10.0013C6.00549 10.0013 3.76147 7.76129 3.76147 5.00063ZM1.93119 18.1248H15.6236C15.2755 15.6521 13.1437 13.7492 10.5692 13.7492H6.98812C4.41361 13.7492 2.28312 15.6521 1.93372 18.1248H1.92993H1.93119ZM0 18.8404C0 14.9931 3.12573 11.8752 6.98559 11.8752H10.5667C14.4253 11.8752 17.5523 14.9918 17.5523 18.8404C17.5523 19.4806 17.0313 20 16.3893 20H1.163C0.520955 20 0 19.4806 0 18.8404Z" fill="#E4E4E4" />
@@ -78,7 +87,7 @@ function Header({ itemCar }) {
                                     </clipPath>
                                 </defs>
                             </svg>
-                        </div>
+                        </Link>
 
                         {/* Car Icon */}
 
@@ -110,7 +119,11 @@ function Header({ itemCar }) {
                             }
 
                         </div>
-
+                        {isAuthenticated && (
+                            <button onClick={logout} className="font-advercase text-sm text-dark-grey hover:text-gray-600 transition-colors hidden 720:block">
+                                Salir
+                            </button>
+                        )}
                     </div>
 
                     {/* Burger Menu */}
@@ -132,7 +145,7 @@ function Header({ itemCar }) {
 
                                 {/* Profile Icon */}
 
-                                <Link>
+                                <Link to="/login" className="cursor-pointer">
                                     <svg width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <g clip-path="url(#clip0_66_2838)">
                                             <path d="M11.9101 5.00063C11.9101 3.27506 10.5074 1.87524 8.77551 1.87524C7.04362 1.87524 5.64095 3.2738 5.64095 5.00063C5.64095 6.72746 7.04362 8.12602 8.77551 8.12602C10.5074 8.12602 11.9101 6.72746 11.9101 5.00063ZM3.76147 5.00063C3.76147 2.23871 6.00675 0 8.77551 0C11.5443 0 13.7908 2.23871 13.7908 5.00063C13.7908 7.76255 11.5455 10.0013 8.77551 10.0013C6.00549 10.0013 3.76147 7.76129 3.76147 5.00063ZM1.93119 18.1248H15.6236C15.2755 15.6521 13.1437 13.7492 10.5692 13.7492H6.98812C4.41361 13.7492 2.28312 15.6521 1.93372 18.1248H1.92993H1.93119ZM0 18.8404C0 14.9931 3.12573 11.8752 6.98559 11.8752H10.5667C14.4253 11.8752 17.5523 14.9918 17.5523 18.8404C17.5523 19.4806 17.0313 20 16.3893 20H1.163C0.520955 20 0 19.4806 0 18.8404Z" fill="#333237" />
@@ -175,12 +188,32 @@ function Header({ itemCar }) {
                         {/* Links */}
 
                         <nav>
-                            <ul className="">
+                            <ul className="flex flex-col items-center">
                                 {linksNames.map((link, index) => (
-                                    <li key={index}><Link className="text-dark-grey font-satoshiM cursor-pointer" to={linkSrc[index]}>{link}</Link></li>
+                                    <li key={index} className="my-2">
+                                        <Link onClick={burgerMenuClose} to={linkSrc[index]} className="font-advercase text-2xl text-dark-grey hover:text-gray-600 transition-colors">
+                                            {link}
+                                        </Link>
+                                    </li>
                                 ))}
+                                {user && user.role === 'admin' && (
+                                    <li className="my-2">
+                                        <Link onClick={burgerMenuClose} to="/admin" className="font-advercase text-2xl text-dark-grey hover:text-gray-600 transition-colors">
+                                            Admin
+                                        </Link>
+                                    </li>
+                                )}
                             </ul>
                         </nav>
+
+                        {/* Logout Button in burger menu */}
+                        {isAuthenticated && (
+                            <div className="w-full mt-10 flex justify-center">
+                                <button onClick={() => { logout(); burgerMenuClose(); }} className="font-advercase text-xl text-dark-grey hover:text-gray-600 transition-colors">
+                                    Salir
+                                </button>
+                            </div>
+                        )}
 
                         <a href="www.instagram.com">
                             <svg width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">

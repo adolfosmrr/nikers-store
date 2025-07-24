@@ -10,7 +10,7 @@ import { Navigation } from 'swiper/modules'
 
 import 'swiper/css';
 
-function ProductDetail({ setItemCar, setTotal }) {
+function ProductDetail({ setItemCar, setTotal, addNotification }) {
 
     
     const { slug } = useParams();
@@ -37,7 +37,9 @@ function ProductDetail({ setItemCar, setTotal }) {
 
     {/* Función de cargar la zapatilla al carrito */ }
 
-    function handleAddToCart() {
+    function handleAddToCart(event) {
+
+        event.preventDefault();
 
         if (!selectedSize) {
             alert('Por favor seleccioná una talla antes de agregar al carrito.');
@@ -76,6 +78,11 @@ function ProductDetail({ setItemCar, setTotal }) {
         });
 
         setTotal((prevTotal) => prevTotal + newItem.priceUnitario);
+
+        addNotification({
+            shoesImage: coverUrl,
+            newShoesTitle: sneaker.name,
+        })
     }
 
     return (

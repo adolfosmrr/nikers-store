@@ -1,8 +1,9 @@
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 import Header from './components/Header';
 import ProductCar from './components/ProductCar';
+import NotificationsContainer from './components/NotificationsContainer';
 import ScrollToTop from './hooks/ScrollToTop';
 
 import Home from './pages/Home';
@@ -10,10 +11,34 @@ import AboutUs from './components/AboutUs';
 import ProductMen from './pages/ProductMen';
 import ProductWomen from './pages/ProductWomen';
 import ProductDetail from './pages/ProductDetail';
+import NewShoes from './components/NewShoes';
+import ShoesStore from './components/ShoesStore';
+import ReactLenis from 'lenis/react';
+import Lenis from 'lenis';
+import Login from './pages/Login';
+import PrivateRoute from './components/PrivateRoute'; 
+import AdminDashboard from './pages/AdminDashboard';
 
 function App() {
+
   const [itemCar, setItemCar] = useState([]);
   const [total, setTotal] = useState(0);
+  const [notifications, setNotifications] = useState([])
+
+  const addGlobalNotification = (notificationData) => {
+    setNotifications(prevNotifications => {
+
+      const MAX_NOTIFICATIONS = 4
+
+      const newNotifications = [{ id: Date.now(), ...notificationData }, ...prevNotifications]
+
+      return newNotifications.slice(0, MAX_NOTIFICATIONS);
+    })
+  }
+
+  const removeGlobalNotification = (idToRemove) => {
+    setNotifications(prevNotifications => prevNotifications.filter(notif => notif.id !== idToRemove))
+  }
 
   useEffect(() => {
     const data = localStorage.getItem('cart');
@@ -66,22 +91,29 @@ function App() {
     localStorage.setItem('cart', JSON.stringify(data));
   }, [itemCar]);
 
-
   return (
     <BrowserRouter>
       <ScrollToTop />
-      <ProductCar itemCar={itemCar} setItemCar={setItemCar} total={total} setTotal={setTotal} />
       <Header itemCar={itemCar} />
+      <ProductCar itemCar={itemCar} setItemCar={setItemCar} total={total} setTotal={setTotal} />
+      <NotificationsContainer notifications={notifications} removeGlobalNotification={removeGlobalNotification} />
 
       <Routes>
-        <Route path="/" element={<Home itemCar={itemCar} setItemCar={setItemCar} setTotal={setTotal} />} />
+        <Route path="/" element={<Home />} />
         <Route path="/AboutUs" element={<AboutUs />} />
-        <Route path="/ProductMen" element={<ProductMen itemCar={itemCar} setItemCar={setItemCar} setTotal={setTotal}/>} />
-        <Route path="/ProductWomen" element={<ProductWomen />} />
-        <Route path='/sneakers/:slug' element={<ProductDetail setItemCar={setItemCar} setTotal={setTotal} />}></Route>
+        <Route path="/ProductMen" element={<ProductMen itemCar={itemCar} setItemCar={setItemCar} setTotal={setTotal} addNotification={addGlobalNotification} />} />
+        <Route path="/ProductWomen" element={<ProductWomen itemCar={itemCar} setItemCar={setItemCar} setTotal={setTotal} addNotification={addGlobalNotification} />} />
+        <Route path="/sneakers/:slug" element={<ProductDetail itemCar={itemCar} setItemCar={setItemCar} setTotal={setTotal} addNotification={addGlobalNotification} />} />
+        <Route path="/login" element={<Login />} />
+
+        {/* Rutas protegidas */}
+        <Route element={<PrivateRoute allowedRoles={['admin']} />}>
+          <Route path="/admin" element={<AdminDashboard />} /> 
+        </Route>
+        <Route element={<PrivateRoute allowedRoles={['admin', 'user']} />}>
+        </Route>
       </Routes>
     </BrowserRouter>
-    // <ProductDetail />
   );
 }
 

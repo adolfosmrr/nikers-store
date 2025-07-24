@@ -2,11 +2,13 @@ import ProductCarousel from '../components/ProductCarousel';
 import Footer from '../components/Footer';
 import ShoesStore from '../components/ShoesStore';
 
-function ProductMen({ itemCar, setItemCar, setTotal }) {
+import { Link } from 'react-router-dom';
+
+function ProductMen({ itemCar, setItemCar, setTotal, addNotification }) {
   return (
     <>
       <ProductCarousel Title="Hombres Sneakers" />
-      <ShoesStore itemCar={itemCar} setItemCar={setItemCar} setTotal={setTotal}/>
+      <ShoesStore itemCar={itemCar} setItemCar={setItemCar} setTotal={setTotal} addNotification={addNotification} />
       <Footer />
     </>
   );

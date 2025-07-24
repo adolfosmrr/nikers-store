@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { slugify } from "../utils/slugify";
 import gsap from "gsap";
 
-function NewShoes({ itemCar, setItemCar, setTotal }) {
+function NewShoes({ itemCar, setItemCar, setTotal, addNotification }) {
 
     const [sneakers, setSneakers] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -138,6 +138,10 @@ function NewShoes({ itemCar, setItemCar, setTotal }) {
 
                                                         setTotal((prev) => prev + item.price);
 
+                                                        addNotification({
+                                                            shoesImage: coverImageUrl,
+                                                            newShoesTitle: item.name,
+                                                        })
                                                         
                                                         setSelectedSizesForItems(prevSizes => {
                                                             const newSizes = { ...prevSizes };
