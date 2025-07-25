@@ -1,24 +1,28 @@
 import { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import { slugify } from "../utils/slugify";
-import gsap from "gsap";
+import gsap from "gsap"; 
 
 
 function ShoesStore({ itemCar, setItemCar, setTotal, addNotification }) {
 
     const [allSneakers, setAllSneakers] = useState([]);
-    const [filteredSneakers, setFilteredSneakers] = useState([]); 
+    const [filteredSneakers, setFilteredSneakers] = useState([]);
     const [loading, setLoading] = useState(true);
     const [selectedSizesForItems, setSelectedSizesForItems] = useState({});
-    const [searchTerm, setSearchTerm] = useState(''); 
+    const [searchTerm, setSearchTerm] = useState('');
+
+
+    const [currentPage, setCurrentPage] = useState(1); 
+    const [productsPerPage] = useState(8); 
 
 
     useEffect(() => {
         fetch("https://6825fe46397e48c913148b73.mockapi.io/products/v1/sneakers")
             .then(res => res.json())
             .then(data => {
-                setAllSneakers(data); 
-                setFilteredSneakers(data); 
+                setAllSneakers(data);
+                setFilteredSneakers(data);
                 setLoading(false);
             })
             .catch(error => {
@@ -30,15 +34,22 @@ function ShoesStore({ itemCar, setItemCar, setTotal, addNotification }) {
     useEffect(() => {
         const lowercasedSearchTerm = searchTerm.toLowerCase();
         const results = allSneakers.filter(item => {
-
             const itemName = item.name ? item.name.toLowerCase() : '';
             const itemGender = item.gender ? item.gender.toLowerCase() : '';
-
             return itemName.includes(lowercasedSearchTerm) ||
                    itemGender.includes(lowercasedSearchTerm);
         });
         setFilteredSneakers(results);
+        setCurrentPage(1); 
     }, [searchTerm, allSneakers]);
+
+
+    const indexOfLastProduct = currentPage * productsPerPage;
+    const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+    const currentProducts = filteredSneakers.slice(indexOfFirstProduct, indexOfLastProduct);
+    const totalPages = Math.ceil(filteredSneakers.length / productsPerPage);
+    const paginate = (pageNumber) => setCurrentPage(pageNumber);
+    
 
 
     if (loading) return <p className="text-center font-satoshiB text-dark-grey py-10">Cargando Sneakers...</p>;
@@ -47,7 +58,6 @@ function ShoesStore({ itemCar, setItemCar, setTotal, addNotification }) {
         <section className="w-full bg-soft-white py-5">
 
             {/* Store Title */}
-
             <div className="w-full px-2.5 mx-auto max-w-8x1 flex justify-between items-end gap-3.5 mb-5">
                 <h1 className="font-advercase text-dark-grey text-lg text-nowrap 720:text-xl 1024:text-2xl">Sneakers</h1>
                 <div className="w-full h-px bg-dark-grey"></div>
@@ -61,7 +71,7 @@ function ShoesStore({ itemCar, setItemCar, setTotal, addNotification }) {
                     className="w-full p-3 border-2 border-dark-grey rounded-md text-dark-grey font-satoshiR focus:outline-none focus:border-gray-500"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    aria-label="Buscar productos" 
+                    aria-label="Buscar productos"
                 />
             </div>
 
@@ -69,11 +79,11 @@ function ShoesStore({ itemCar, setItemCar, setTotal, addNotification }) {
 
             <div className="w-full grid grid-cols-1 auto-rows-fr gap-2.5 px-2.5 mx-auto max-w-8x1 720:grid-cols-2">
                 {
-                    filteredSneakers.length > 0 ? (
-                        filteredSneakers.map((item) => {
-                            
+                    currentProducts.length > 0 ? ( 
+                        currentProducts.map((item) => { 
+
                             const coverImageName = item.images.find(img => img.includes("cover.avif"));
-                            const coverImageUrl = coverImageName ? `/images/shoes/${coverImageName}` : ''; 
+                            const coverImageUrl = coverImageName ? `/images/shoes/${coverImageName}` : '';
 
                             const itemSlug = slugify(item.name);
 
@@ -81,13 +91,11 @@ function ShoesStore({ itemCar, setItemCar, setTotal, addNotification }) {
                                 <div key={item.id} className="w-full p-5 bg-[#cecece] flex flex-col justify-between items-center rounded-2xl">
 
                                     {/* Item Title */}
-
                                     <div className="w-full">
                                         <h1 className="font-advercase text-2xl text-dark-grey text-balance 920:text-3xl">{item.name}</h1>
                                     </div>
 
                                     {/* Item Picture */}
-
                                     <div className="h-full flex justify-center items-end">
                                         {coverImageUrl && <img src={coverImageUrl} alt={item.name} className="w-4/5 mb-10"/>}
                                     </div>
@@ -127,13 +135,13 @@ function ShoesStore({ itemCar, setItemCar, setTotal, addNotification }) {
 
                                             <div className="size-[20px] deskScreen:size-[25px] bg-dark-grey rounded-full flex justify-center items-center relative transition-all hover:rotate-180 cursor-pointer"
                                                 onClick={() => {
-                                                    
+
                                                     const selectedSize = selectedSizesForItems[item.id];
 
-                                                   
+
                                                     if (!selectedSize || selectedSize === "") {
                                                         alert('Por favor seleccioná una talla antes de agregar al carrito.');
-                                                        return; 
+                                                        return;
                                                     }
 
                                                     const exists = itemCar.find((shoe) => shoe.id === item.id && shoe.size === selectedSize);
@@ -148,21 +156,21 @@ function ShoesStore({ itemCar, setItemCar, setTotal, addNotification }) {
                                                             })
                                                         );
                                                     } else {
-                                                        
+
                                                         setItemCar((prev) => [
                                                             ...prev,
                                                             {
                                                                 id: item.id,
-                                                                shoesImage: coverImageUrl, 
-                                                                newShoesTitle: item.name, 
-                                                                priceUnitario: item.price, 
-                                                                size: selectedSize, 
+                                                                shoesImage: coverImageUrl,
+                                                                newShoesTitle: item.name,
+                                                                priceUnitario: item.price,
+                                                                size: selectedSize,
                                                                 quantity: 1,
                                                             },
                                                         ]);
                                                     }
 
-                                                    
+
                                                     setTotal((prev) => prev + item.price);
 
                                                     addNotification({
@@ -170,7 +178,7 @@ function ShoesStore({ itemCar, setItemCar, setTotal, addNotification }) {
                                                         newShoesTitle: item.name,
                                                     })
 
-                                                   
+
                                                     setSelectedSizesForItems(prevSizes => {
                                                         const newSizes = { ...prevSizes };
                                                         delete newSizes[item.id];
@@ -191,6 +199,36 @@ function ShoesStore({ itemCar, setItemCar, setTotal, addNotification }) {
                     )
                 }
             </div>
+
+            {/* --- CONTROLES DEL PAGINADOR --- */}
+            
+            {totalPages > 1 && ( 
+                <div className="flex justify-center items-center gap-2.5 mt-8 px-2.5 mx-auto max-w-8x1">
+                    <button
+                        onClick={() => paginate(currentPage - 1)}
+                        disabled={currentPage === 1}
+                        className="px-4 py-2 bg-dark-grey text-soft-white rounded-md font-satoshiB disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                        Anterior
+                    </button>
+                    {[...Array(totalPages)].map((_, index) => (
+                        <button
+                            key={index + 1}
+                            onClick={() => paginate(index + 1)}
+                            className={`px-4 py-2 rounded-md font-satoshiB ${currentPage === index + 1 ? 'bg-blue-600 text-white' : 'bg-gray-300 text-dark-grey hover:bg-gray-400'}`}
+                        >
+                            {index + 1}
+                        </button>
+                    ))}
+                    <button
+                        onClick={() => paginate(currentPage + 1)}
+                        disabled={currentPage === totalPages}
+                        className="px-4 py-2 bg-dark-grey text-soft-white rounded-md font-satoshiB disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                        Siguiente
+                    </button>
+                </div>
+            )}
         </section>
     );
 }
