@@ -30,7 +30,7 @@ function ShoesStore({ itemCar, setItemCar, setTotal, addNotification }) {
     useEffect(() => {
         const lowercasedSearchTerm = searchTerm.toLowerCase();
         const results = allSneakers.filter(item => {
-            // Asegurarse de que las propiedades existan antes de llamar a métodos de string
+
             const itemName = item.name ? item.name.toLowerCase() : '';
             const itemGender = item.gender ? item.gender.toLowerCase() : '';
 
