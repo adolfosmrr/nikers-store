@@ -2,8 +2,16 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import Footer from '../components/Footer';
+import SEOHelmet from '../components/SEOHelmet';
 
 function Login() {
+
+    <SEOHelmet
+        title="LogIn"
+        description="Bienvenido a Nikers, tu tienda online de zapatillas premium. Descubre las últimas tendencias y colecciones exclusivas."
+        keywords="zapatillas, sneakers, tienda, online, moda, nuevas colecciones"
+    />
+
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
@@ -90,10 +98,10 @@ function Login() {
 
                     <div className="text-center mt-10 720:text-left flex justify-between gap-4">
                         <p className="font-satoshiR text-dark-grey text-sm mb-2">
-                            Correo administrador: <span className="font-satoshiB">admin@nikers.com</span><br/>Contraseña: <span className="font-satoshiB">admin123</span>
+                            Correo administrador: <span className="font-satoshiB">admin@nikers.com</span><br />Contraseña: <span className="font-satoshiB">admin123</span>
                         </p>
                         <p className="font-satoshiR text-dark-grey text-sm">
-                            Correo usuario: <span className="font-satoshiB">user@nikers.com</span><br/>Contraseña: <span className="font-satoshiB">user123</span>
+                            Correo usuario: <span className="font-satoshiB">user@nikers.com</span><br />Contraseña: <span className="font-satoshiB">user123</span>
                         </p>
                     </div>
                 </div>

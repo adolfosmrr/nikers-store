@@ -3,11 +3,18 @@ import AboutUs from '../components/AboutUs';
 import GenderShoes from '../components/GenderShoes';
 import NewShoes from '../components/NewShoes';
 import Footer from '../components/Footer';
+import SEOHelmet from '../components/SEOHelmet';
 
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
 function Home({ itemCar, setItemCar, setTotal }) {
+
+  <SEOHelmet
+    title="Inicio"
+    description="Bienvenido a Nikers, tu tienda online de zapatillas premium. Descubre las últimas tendencias y colecciones exclusivas."
+    keywords="zapatillas, sneakers, tienda, online, moda, nuevas colecciones"
+  />
 
   const location = useLocation();
 

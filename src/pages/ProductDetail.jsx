@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { slugify } from '../utils/slugify';
 import { gsap } from "gsap/gsap-core";
+import SEOHelmet from "../components/SEOHelmet";
 
 // Swiper
 
@@ -12,7 +13,12 @@ import 'swiper/css';
 
 function ProductDetail({ setItemCar, setTotal, addNotification }) {
 
-    
+    <SEOHelmet
+        title="Catálogo de productos"
+        description="Bienvenido a Nikers, tu tienda online de zapatillas premium. Descubre las últimas tendencias y colecciones exclusivas."
+        keywords="zapatillas, sneakers, tienda, online, moda, nuevas colecciones"
+    />
+
     const { slug } = useParams();
     const [sneaker, setSneaker] = useState([]);
     const [loading, setLoading] = useState(true);
