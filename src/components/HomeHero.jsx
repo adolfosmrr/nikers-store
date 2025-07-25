@@ -10,10 +10,10 @@ function HomeHero() {
 
     return (
         <section className="w-full h-screen min-h-[1000px] max-h-[1080px] bg-black cursor-auto hero:cursor-none">
-            <div className="container w-full h-full overflow-hidden min-h-[800px]">
+            <div className="container w-full h-full overflow-hidden min-h-[1000px]">
                 <div className="cursor hidden absolute top-0 left-0 size-[100px] hero:flex justify-center items-center bg-black/50 backdrop-blur-xs rounded-full pointer-events-none z-2"><p className="text-soft-white font-satoshiL text-sm uppercase "></p></div>
 
-                <div className="story-img absolute top-0 left-0 w-screen h-screen overflow-hidden opacity-50 min-h-[800px]">
+                <div className="story-img absolute top-0 left-0 w-screen h-screen overflow-hidden opacity-50 min-h-[1000px]">
                     <div className="img absolute top-0 left-0 w-full h-full"><img className="absolute top-0 left-0 size-full object-cover" src='/images/home-carousel/air-force--bg.avif' alt='' /></div>
                     <div className="w-full h-full absolute z-2 bg-black/20 mix-blend-multiply backdrop-blur-sm"></div>
                 </div>
@@ -45,9 +45,6 @@ function HomeHero() {
                             <div className="title-row relative w-full h-[70px]"><h1 className="text-soft-white font-advercase text-6xl absolute t-0">Air Force 1</h1></div>
                             <div className="title-row relative w-full h-[60px]"><h1 className="text-soft-white font-advercase text-6xl absolute t-0">Low Retro</h1></div>
                             <div className="title-row paragraph relative w-full h-[60px]"><h1 className="text-soft-white font-satoshiR text-lg absolute t-0">Una leyenda silenciosa desde 2002.</h1></div>
-                        </div>
-                        <div className="link relative w-max mx-0 py-1 px-0">
-                            <a className="text-dark-grey bg-soft-white font-advercase text-sm px-5 py-2" href='behance.com'>Comprar ahora</a>
                         </div>
                     </div>
                 </div>

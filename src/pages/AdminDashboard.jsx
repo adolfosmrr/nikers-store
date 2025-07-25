@@ -1,10 +1,18 @@
 // src/pages/AdminDashboard.jsx
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
-import { slugify } from '../utils/slugify'; // Asegúrate de que esta importación sea correcta
+import { slugify } from '../utils/slugify';
 import Footer from '../components/Footer';
+import SEOHelmet from '../components/SEOHelmet';
 
 function AdminDashboard() {
+
+    <SEOHelmet
+        title="Panel de Administración"
+        description="Panel de administración para gestionar productos de Nikers: agregar, editar y eliminar zapatillas."
+        keywords="admin, gestión de productos, zapatillas, Nikers, inventario"
+    />
+
     const { user } = useAuth();
     const [sneakers, setSneakers] = useState([]);
     const [loading, setLoading] = useState(true);
