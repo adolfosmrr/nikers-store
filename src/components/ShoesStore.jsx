@@ -201,13 +201,13 @@ function ShoesStore({ itemCar, setItemCar, setTotal, addNotification }) {
             </div>
 
             {/* --- CONTROLES DEL PAGINADOR --- */}
-            
+
             {totalPages > 1 && ( 
                 <div className="flex justify-center items-center gap-2.5 mt-8 px-2.5 mx-auto max-w-8x1">
                     <button
                         onClick={() => paginate(currentPage - 1)}
                         disabled={currentPage === 1}
-                        className="px-4 py-2 bg-dark-grey text-soft-white rounded-md font-satoshiB disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="px-4 py-2 bg-dark-grey text-soft-white rounded-md font-satoshiB disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
                     >
                         Anterior
                     </button>
@@ -215,7 +215,7 @@ function ShoesStore({ itemCar, setItemCar, setTotal, addNotification }) {
                         <button
                             key={index + 1}
                             onClick={() => paginate(index + 1)}
-                            className={`px-4 py-2 rounded-md font-satoshiB ${currentPage === index + 1 ? 'bg-blue-600 text-white' : 'bg-gray-300 text-dark-grey hover:bg-gray-400'}`}
+                            className={`px-4 py-2 rounded-md font-satoshiB ${currentPage === index + 1 ? 'bg-dark-grey text-white' : 'bg-gray-300 text-dark-grey hover:bg-gray-400 cursor-pointer'}`}
                         >
                             {index + 1}
                         </button>
@@ -223,7 +223,7 @@ function ShoesStore({ itemCar, setItemCar, setTotal, addNotification }) {
                     <button
                         onClick={() => paginate(currentPage + 1)}
                         disabled={currentPage === totalPages}
-                        className="px-4 py-2 bg-dark-grey text-soft-white rounded-md font-satoshiB disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="px-4 py-2 bg-dark-grey text-soft-white rounded-md font-satoshiB disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
                     >
                         Siguiente
                     </button>
